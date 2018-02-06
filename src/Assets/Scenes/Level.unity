@@ -113,6 +113,131 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &12311361
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 12311366}
+  - component: {fileID: 12311365}
+  - component: {fileID: 12311364}
+  - component: {fileID: 12311363}
+  - component: {fileID: 12311362}
+  m_Layer: 0
+  m_Name: Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &12311362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 12311361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e184fad4d36194a8482170ed39e36600, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerID: 0
+  speed: 500
+  jumpForce: 800
+--- !u!58 &12311363
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 12311361}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2.5599997
+--- !u!50 &12311364
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 12311361}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 3
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!212 &12311365
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 12311361}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: f8910b6d8888e5d4a99d1ab4a75b5e1c, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 5.12, y: 5.12}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+--- !u!4 &12311366
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 12311361}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.633, y: 0.971, z: -1}
+  m_LocalScale: {x: 0.35651577, y: 0.35651577, z: 0.35651577}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &680326833
 GameObject:
   m_ObjectHideFlags: 0
@@ -2392,7 +2517,7 @@ Transform:
   - {fileID: 1473073320}
   - {fileID: 680326834}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1473073319
 GameObject:
@@ -2979,6 +3104,87 @@ Tilemap:
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
       m_ColliderType: 1
+  - first: {x: -7, y: -1, z: 0}
+    second:
+      m_TileIndex: 3
+      m_TileSpriteIndex: 3
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 0}
+      m_TileFlags: 1
+      m_ColliderType: 1
+  - first: {x: -6, y: -1, z: 0}
+    second:
+      m_TileIndex: 4
+      m_TileSpriteIndex: 4
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 0}
+      m_TileFlags: 1
+      m_ColliderType: 1
+  - first: {x: -5, y: -1, z: 0}
+    second:
+      m_TileIndex: 5
+      m_TileSpriteIndex: 5
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 0}
+      m_TileFlags: 1
+      m_ColliderType: 1
+  - first: {x: 4, y: -1, z: 0}
+    second:
+      m_TileIndex: 3
+      m_TileSpriteIndex: 3
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 0}
+      m_TileFlags: 1
+      m_ColliderType: 1
+  - first: {x: 5, y: -1, z: 0}
+    second:
+      m_TileIndex: 4
+      m_TileSpriteIndex: 4
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 0}
+      m_TileFlags: 1
+      m_ColliderType: 1
+  - first: {x: 6, y: -1, z: 0}
+    second:
+      m_TileIndex: 5
+      m_TileSpriteIndex: 5
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 0}
+      m_TileFlags: 1
+      m_ColliderType: 1
+  - first: {x: -1, y: 2, z: 0}
+    second:
+      m_TileIndex: 3
+      m_TileSpriteIndex: 3
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 0}
+      m_TileFlags: 1
+      m_ColliderType: 1
+  - first: {x: 0, y: 2, z: 0}
+    second:
+      m_TileIndex: 4
+      m_TileSpriteIndex: 4
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 0}
+      m_TileFlags: 1
+      m_ColliderType: 1
+  - first: {x: 1, y: 2, z: 0}
+    second:
+      m_TileIndex: 5
+      m_TileSpriteIndex: 5
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 0}
+      m_TileFlags: 1
+      m_ColliderType: 1
   m_AnimatedTiles: {}
   m_TileAssetArray:
   - m_RefCount: 16
@@ -2987,6 +3193,12 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 3a1ef8b082979410980a8492d4797148, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 21337fbd107554113b2edaf46a935a6a, type: 2}
+  - m_RefCount: 3
+    m_Data: {fileID: 11400000, guid: 9b0d569c583054ea79bf8510f33fe44c, type: 2}
+  - m_RefCount: 3
+    m_Data: {fileID: 11400000, guid: 79f4ad129042842e38bdabf46a2237be, type: 2}
+  - m_RefCount: 3
+    m_Data: {fileID: 11400000, guid: 1e80fea9ec20e43a192fb774c866acf9, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 16
     m_Data: {fileID: 21300002, guid: 1bb0f918cd880460a91352b136abc295, type: 3}
@@ -2994,8 +3206,14 @@ Tilemap:
     m_Data: {fileID: 21300004, guid: 1bb0f918cd880460a91352b136abc295, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: 1bb0f918cd880460a91352b136abc295, type: 3}
+  - m_RefCount: 3
+    m_Data: {fileID: 21300042, guid: 1bb0f918cd880460a91352b136abc295, type: 3}
+  - m_RefCount: 3
+    m_Data: {fileID: 21300044, guid: 1bb0f918cd880460a91352b136abc295, type: 3}
+  - m_RefCount: 3
+    m_Data: {fileID: 21300046, guid: 1bb0f918cd880460a91352b136abc295, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 18
+  - m_RefCount: 27
     m_Data:
       e00: 1
       e01: 0
@@ -3014,12 +3232,12 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 18
+  - m_RefCount: 27
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -10, y: -5, z: 0}
-  m_Size: {x: 20, y: 5, z: 1}
+  m_Size: {x: 20, y: 8, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -3040,6 +3258,12 @@ Tilemap:
     e32: 0
     e33: 1
   m_TileRefreshArray:
+  - serializedVersion: 1
+    m_DirtyIndex: 0
+  - serializedVersion: 1
+    m_DirtyIndex: 0
+  - serializedVersion: 1
+    m_DirtyIndex: 0
   - serializedVersion: 1
     m_DirtyIndex: 0
   - serializedVersion: 1
@@ -3122,6 +3346,424 @@ Transform:
   m_GameObject: {fileID: 1761795075}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1778731062
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1778731064}
+  - component: {fileID: 1778731063}
+  m_Layer: 0
+  m_Name: Rewired Input Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1778731063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1778731062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 581b3e3c96df0ef42aef16b63b27b87f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dontDestroyOnLoad: 1
+  _userData:
+    configVars:
+      updateLoop: 1
+      alwaysUseUnityInput: 0
+      windowsStandalonePrimaryInputSource: 0
+      osx_primaryInputSource: 0
+      linux_primaryInputSource: 0
+      windowsUWP_primaryInputSource: 0
+      xboxOne_primaryInputSource: 0
+      ps4_primaryInputSource: 0
+      webGL_primaryInputSource: 0
+      useXInput: 1
+      useNativeMouse: 1
+      useEnhancedDeviceSupport: 1
+      windowsStandalone_useSteamRawInputControllerWorkaround: 0
+      osxStandalone_useEnhancedDeviceSupport: 1
+      android_supportUnknownGamepads: 1
+      ps4_assignJoysticksByPS4JoyId: 1
+      useSteamControllerSupport: 1
+      platformVars_windowsStandalone:
+        disableKeyboard: 0
+        ignoreInputWhenAppNotInFocus: 1
+        useNativeKeyboard: 1
+        joystickRefreshRate: 240
+      platformVars_linuxStandalone:
+        disableKeyboard: 0
+        ignoreInputWhenAppNotInFocus: 1
+      platformVars_osxStandalone:
+        disableKeyboard: 0
+        ignoreInputWhenAppNotInFocus: 1
+      platformVars_windows8Store:
+        disableKeyboard: 0
+        ignoreInputWhenAppNotInFocus: 1
+      platformVars_windowsUWP:
+        disableKeyboard: 0
+        ignoreInputWhenAppNotInFocus: 1
+        useGamepadAPI: 1
+        useHIDAPI: 1
+      platformVars_iOS:
+        disableKeyboard: 0
+        ignoreInputWhenAppNotInFocus: 1
+      platformVars_tvOS:
+        disableKeyboard: 0
+        ignoreInputWhenAppNotInFocus: 1
+      platformVars_android:
+        disableKeyboard: 0
+        ignoreInputWhenAppNotInFocus: 1
+      platformVars_ps3:
+        disableKeyboard: 0
+        ignoreInputWhenAppNotInFocus: 1
+      platformVars_ps4:
+        disableKeyboard: 0
+        ignoreInputWhenAppNotInFocus: 1
+      platformVars_psVita:
+        disableKeyboard: 0
+        ignoreInputWhenAppNotInFocus: 1
+      platformVars_xbox360:
+        disableKeyboard: 0
+        ignoreInputWhenAppNotInFocus: 1
+      platformVars_xboxOne:
+        disableKeyboard: 0
+        ignoreInputWhenAppNotInFocus: 1
+      platformVars_wii:
+        disableKeyboard: 0
+        ignoreInputWhenAppNotInFocus: 1
+      platformVars_wiiu:
+        disableKeyboard: 0
+        ignoreInputWhenAppNotInFocus: 1
+      platformVars_switch:
+        disableKeyboard: 0
+        ignoreInputWhenAppNotInFocus: 1
+      platformVars_webGL:
+        disableKeyboard: 0
+        ignoreInputWhenAppNotInFocus: 1
+      maxJoysticksPerPlayer: 1
+      autoAssignJoysticks: 1
+      assignJoysticksToPlayingPlayersOnly: 0
+      distributeJoysticksEvenly: 1
+      reassignJoystickToPreviousOwnerOnReconnect: 1
+      defaultJoystickAxis2DDeadZoneType: 1
+      force4WayHats: 0
+      deferControllerConnectedEventsOnStart: 0
+      editorSettings:
+        exportConsts_useParentClass: 0
+        exportConsts_parentClassName: RewiredConsts
+        exportConsts_useNamespace: 1
+        exportConsts_namespace: RewiredConsts
+        exportConsts_actions: 1
+        exportConsts_actionsClassName: Action
+        exportConsts_actionsIncludeActionCategory: 0
+        exportConsts_actionsCreateClassesForActionCategories: 0
+        exportConsts_mapCategories: 1
+        exportConsts_mapCategoriesClassName: Category
+        exportConsts_layouts: 1
+        exportConsts_layoutsClassName: Layout
+        exportConsts_players: 1
+        exportConsts_playersClassName: Player
+        exportConsts_customControllers: 1
+        exportConsts_customControllersClassName: CustomController
+        exportConsts_customControllersAxesClassName: Axis
+        exportConsts_customControllersButtonsClassName: Button
+        exportConsts_allCapsConstantNames: 0
+    players:
+    - _id: 9999999
+      _name: System
+      _descriptiveName: System
+      _startPlaying: 1
+      _defaultJoystickMaps: []
+      _defaultMouseMaps: []
+      _defaultKeyboardMaps: []
+      _defaultCustomControllerMaps: []
+      _startingCustomControllers: []
+      _assignMouseOnStart: 1
+      _assignKeyboardOnStart: 1
+      _excludeFromControllerAutoAssignment: 1
+    - _id: 1
+      _name: Player 1
+      _descriptiveName: Player 1
+      _startPlaying: 1
+      _defaultJoystickMaps:
+      - _enabled: 1
+        _categoryId: 0
+        _layoutId: 0
+      _defaultMouseMaps: []
+      _defaultKeyboardMaps:
+      - _enabled: 1
+        _categoryId: 0
+        _layoutId: 0
+      _defaultCustomControllerMaps: []
+      _startingCustomControllers: []
+      _assignMouseOnStart: 0
+      _assignKeyboardOnStart: 1
+      _excludeFromControllerAutoAssignment: 0
+    actions:
+    - _id: 0
+      _name: Move Horizontal
+      _type: 0
+      _descriptiveName: Move Horizontal
+      _positiveDescriptiveName: Move Right
+      _negativeDescriptiveName: Move Left
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 0
+    - _id: 1
+      _name: Action
+      _type: 1
+      _descriptiveName: Jump/Interact
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 0
+    actionCategories:
+    - _name: Default
+      _descriptiveName: Default
+      _tag: 
+      _id: 0
+      _userAssignable: 1
+    actionCategoryMap:
+      list:
+      - categoryId: 0
+        actionIds: 0000000001000000
+    inputBehaviors:
+    - _id: 0
+      _name: Default
+      _joystickAxisSensitivity: 1
+      _digitalAxisSimulation: 1
+      _digitalAxisSnap: 1
+      _digitalAxisInstantReverse: 0
+      _digitalAxisGravity: 3
+      _digitalAxisSensitivity: 3
+      _mouseXYAxisMode: 0
+      _mouseOtherAxisMode: 0
+      _mouseXYAxisSensitivity: 1
+      _mouseXYAxisDeltaCalc: 0
+      _mouseOtherAxisSensitivity: 1
+      _customControllerAxisSensitivity: 1
+      _buttonDoublePressSpeed: 0.3
+      _buttonShortPressTime: 0.25
+      _buttonShortPressExpiresIn: 0
+      _buttonLongPressTime: 1
+      _buttonLongPressExpiresIn: 0
+      _buttonDeadZone: 0.5
+      _buttonDownBuffer: 0
+      _buttonRepeatRate: 30
+      _buttonRepeatDelay: 0
+    mapCategories:
+    - _name: Default
+      _descriptiveName: Default
+      _tag: 
+      _id: 0
+      _userAssignable: 1
+      _checkConflictsWithAllCategories: 1
+      _checkConflictsCategoryIds: 
+    joystickLayouts:
+    - _name: Default
+      _descriptiveName: Default
+      _id: 0
+    keyboardLayouts:
+    - _name: Default
+      _descriptiveName: Default
+      _id: 0
+    mouseLayouts:
+    - _name: Default
+      _descriptiveName: Default
+      _id: 0
+    customControllerLayouts:
+    - _name: Default
+      _descriptiveName: Default
+      _id: 0
+    joystickMaps:
+    - id: 1
+      categoryId: 0
+      layoutId: 0
+      name: 
+      hardwareGuidString: 83b427e4-086f-47f3-bb06-be266abd1ca5
+      customControllerUid: 0
+      actionElementMaps:
+      - _actionCategoryId: 0
+        _actionId: 0
+        _elementType: 0
+        _elementIdentifierId: 0
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 0
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 0
+        _elementType: 1
+        _elementIdentifierId: 22
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 1
+        _keyboardKeyCode: 0
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 0
+        _elementType: 1
+        _elementIdentifierId: 20
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 0
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 1
+        _elementType: 1
+        _elementIdentifierId: 4
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 0
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 1
+        _elementType: 1
+        _elementIdentifierId: 5
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 0
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 1
+        _elementType: 1
+        _elementIdentifierId: 6
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 0
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 1
+        _elementType: 1
+        _elementIdentifierId: 7
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 0
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 1
+        _elementType: 1
+        _elementIdentifierId: 8
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 0
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 1
+        _elementType: 1
+        _elementIdentifierId: 9
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 0
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+    keyboardMaps:
+    - id: 0
+      categoryId: 0
+      layoutId: 0
+      name: 
+      hardwareGuidString: 
+      customControllerUid: 0
+      actionElementMaps:
+      - _actionCategoryId: 0
+        _actionId: 0
+        _elementType: 1
+        _elementIdentifierId: -1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 1
+        _keyboardKeyCode: 97
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 0
+        _elementType: 1
+        _elementIdentifierId: -1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 100
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 1
+        _elementType: 1
+        _elementIdentifierId: -1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 115
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+    mouseMaps: []
+    customControllerMaps: []
+    customControllers: []
+    playerIdCounter: 2
+    actionIdCounter: 2
+    actionCategoryIdCounter: 1
+    inputBehaviorIdCounter: 1
+    mapCategoryIdCounter: 1
+    joystickLayoutIdCounter: 1
+    keyboardLayoutIdCounter: 2
+    mouseLayoutIdCounter: 1
+    customControllerLayoutIdCounter: 1
+    joystickMapIdCounter: 2
+    keyboardMapIdCounter: 1
+    mouseMapIdCounter: 0
+    customControllerMapIdCounter: 0
+    customControllerIdCounter: 0
+  _controllerDataFiles: {fileID: 11400000, guid: d21d2b20df8369642b76aafbb2576ba7,
+    type: 2}
+--- !u!4 &1778731064
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1778731062}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
