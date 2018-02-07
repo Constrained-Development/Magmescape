@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private Rewired.Player player;
+    private int levelCollisions = 0;
 
     // Use this for initialization
     private void Start()
@@ -40,12 +41,28 @@ public class PlayerController : MonoBehaviour
         Move();
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.collider.tag == "Level")
+        {
+            levelCollisions++;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.collider.tag == "Level")
+        {
+            levelCollisions--;
+        }
+    }
+
     private void GetInput()
     {
         direction = Vector2.zero;
         direction.x = player.GetAxis("Move Horizontal");
 
-        if (!jump)
+        if (!jump && levelCollisions != 0)
         {
             jump = player.GetButtonDown("Action");
         }
@@ -55,13 +72,21 @@ public class PlayerController : MonoBehaviour
     {
         if (direction.x != 0.0f)
         {
-            // animator.SetLayerWeight(1, 1.0f);
+            if (levelCollisions != 0)
+            {
+                animator.SetLayerWeight(1, 1.0f);
+            }
+
             spriteRenderer.flipX = direction.x < 0.0f;
             body.velocity = new Vector2(direction.x * speed * Time.fixedDeltaTime, body.velocity.y);
         }
         else
         {
-            // animator.SetLayerWeight(1, 0.0f);
+            if (levelCollisions != 0)
+            {
+                animator.SetLayerWeight(1, 0.0f);
+            }
+
             body.velocity = new Vector2(0.0f, body.velocity.y);
         }
 
@@ -69,6 +94,15 @@ public class PlayerController : MonoBehaviour
         {
             jump = false;
             body.AddForce(Vector2.up * jumpForce * Time.fixedDeltaTime, ForceMode2D.Impulse);
+        }
+
+        if (levelCollisions == 0)
+        {
+            animator.SetLayerWeight(2, 1.0f);
+        }
+        else
+        {
+            animator.SetLayerWeight(2, 0.0f);
         }
     }
 }
