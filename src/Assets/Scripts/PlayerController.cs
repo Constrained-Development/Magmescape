@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private int playerID = 0;
     [SerializeField]
+    private Utilities.ColorEnum playerColor;
+    [SerializeField]
     private float speed = 1.0f;
     [SerializeField]
     private float jumpForce = 1.0f;
@@ -104,5 +106,15 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetLayerWeight(2, 0.0f);
         }
+    }
+
+    public int GetPlayerID()
+    {
+        return playerID;
+    }
+
+    public Utilities.ColorEnum GetPlayerColor()
+    {
+        return playerColor;
     }
 }
