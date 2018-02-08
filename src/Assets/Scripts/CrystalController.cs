@@ -7,10 +7,12 @@ public class CrystalController : MonoBehaviour
     [SerializeField]
     private Utilities.ColorEnum crystalColor;
 
+    private Animator animator;
+
     // Use this for initialization
     private void Start()
     {
-
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -24,7 +26,7 @@ public class CrystalController : MonoBehaviour
         if (other.gameObject.tag == "Player" &&
             other.gameObject.GetComponent<PlayerController>().GetPlayerColor() == crystalColor)
         {
-            // Correct player entered
+            animator.SetLayerWeight(1, 1.0f);
         }
     }
 
@@ -33,7 +35,7 @@ public class CrystalController : MonoBehaviour
         if (other.gameObject.tag == "Player" &&
             other.gameObject.GetComponent<PlayerController>().GetPlayerColor() == crystalColor)
         {
-            // Correct player exited
+            animator.SetLayerWeight(1, 0.0f);
         }
     }
 
