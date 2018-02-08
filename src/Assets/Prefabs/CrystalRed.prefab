@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 95491556908383360}
   - component: {fileID: 114453294638362376}
   m_Layer: 0
-  m_Name: Crystal
+  m_Name: CrystalRed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,8 +88,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crystalColor: 0
-  redCrystal: {fileID: 9100000, guid: 1c256550210d4204a9d28248829c24d0, type: 2}
-  blueCrystal: {fileID: 9100000, guid: 11028c15bcdac824796b2b8bb3d6beb7, type: 2}
 --- !u!114 &114453294638362376
 MonoBehaviour:
   m_ObjectHideFlags: 1
