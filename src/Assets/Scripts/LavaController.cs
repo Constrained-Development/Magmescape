@@ -4,26 +4,26 @@ using UnityEngine;
 
 public class LavaController : MonoBehaviour
 {
-	[SerializeField]
-	private float speed;
+    [SerializeField]
+    private float speed;
 
-	private CameraController camera;
+    private CameraController cameraController;
 
-	private void Start()
-	{
-		camera = GameObject.Find("Main Camera").GetComponent<CameraController>();
-	}
+    private void Start()
+    {
+        cameraController = GameObject.Find("Main Camera").GetComponent<CameraController>();
+    }
 
-	private void Update()
-	{
-		if (!camera.IsMoving && transform.position.y > GameManager.GROUND_VERTICAL_POSITION)
-		{
-			camera.StartMoving(speed);
-		}
-	}
+    private void Update()
+    {
+        if (!cameraController.IsMoving && transform.position.y > GameManager.GROUND_VERTICAL_POSITION)
+        {
+            cameraController.StartMoving(speed);
+        }
+    }
 
-	private void FixedUpdate()
-	{
-		transform.position += new Vector3(0.0f, speed * Time.fixedDeltaTime, 0.0f);
-	}
+    private void FixedUpdate()
+    {
+        transform.position += new Vector3(0.0f, speed * Time.fixedDeltaTime, 0.0f);
+    }
 }
