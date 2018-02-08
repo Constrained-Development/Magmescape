@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: 212628410756343160}
   - component: {fileID: 58909918810006164}
   - component: {fileID: 114210613478080878}
+  - component: {fileID: 95491556908383360}
+  - component: {fileID: 114453294638362376}
   m_Layer: 0
   m_Name: Crystal
   m_TagString: Untagged
@@ -57,6 +59,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.03}
   serializedVersion: 2
   m_Radius: 0.35
+--- !u!95 &95491556908383360
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1702314010047274}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114210613478080878
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -69,6 +88,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crystalColor: 0
+  redCrystal: {fileID: 9100000, guid: 1c256550210d4204a9d28248829c24d0, type: 2}
+  blueCrystal: {fileID: 9100000, guid: 11028c15bcdac824796b2b8bb3d6beb7, type: 2}
+--- !u!114 &114453294638362376
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1702314010047274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 354c830f6bac94ed690980da24370f32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  door: {fileID: 0}
+  openSpeed: 5
 --- !u!212 &212628410756343160
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -103,7 +137,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300080, guid: 1bb0f918cd880460a91352b136abc295, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 53c28b2ad2c1d634ebb7788033df9fdd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
