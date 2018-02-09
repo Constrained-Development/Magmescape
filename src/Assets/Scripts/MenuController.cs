@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenuController : MonoBehaviour
+public class MenuController : MonoBehaviour
 {
 	public void LoadSceneByIndex(int sceneIndex)
 	{
