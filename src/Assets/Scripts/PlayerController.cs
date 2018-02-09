@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private Rewired.Player player;
     private int levelCollisions = 0;
+    private GameManager gameManager;
 
     // Use this for initialization
     private void Start()
@@ -30,6 +31,7 @@ public class PlayerController : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         player = ReInput.players.GetPlayer(playerID);
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -41,6 +43,15 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Lava")
+        {
+            // TODO: play death sound
+            gameManager.GameOver();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)

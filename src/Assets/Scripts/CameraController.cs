@@ -4,22 +4,13 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-	private float speed;
-	private bool isMoving;
-
-	public bool IsMoving { get { return isMoving; } }
-
-	public void StartMoving(float speed)
-	{
-		this.speed = speed;
-		this.isMoving = true;
-	}
+	// This field is hidden from the inspector because
+	// it's value should only be set by the game manager
+	[HideInInspector]
+	public float Speed;
 
 	private void FixedUpdate()
 	{
-		if (isMoving)
-		{
-			transform.position += new Vector3(0.0f, speed * Time.fixedDeltaTime, 0.0f);
-		}
+		transform.position += new Vector3(0.0f, Speed * Time.fixedDeltaTime, 0.0f);
 	}
 }
