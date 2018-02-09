@@ -89,6 +89,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(seconds);
 
         rumblingAudioSource.Play();
+        cameraController.Shake(rumblingSeconds);
 
         yield return new WaitForSecondsRealtime(rumblingSeconds);
 
