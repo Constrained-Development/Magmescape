@@ -119,40 +119,21 @@ public class GameManager : MonoBehaviour
 
     private void SetupAudio()
     {
-        // Music
-        musicAudioSource = gameObject.AddComponent(typeof(AudioSource)) as AudioSource;
-        musicAudioSource.clip = musicClip;
-        musicAudioSource.playOnAwake = false;
-        musicAudioSource.loop = true;
-        musicAudioSource.volume = musicVolume;
+        musicAudioSource    = AddAudioSourceComponent(musicClip,    true,  musicVolume);
+        lavaAudioSource     = AddAudioSourceComponent(lavaClip,     true,  lavaVolume);
+        rumblingAudioSource = AddAudioSourceComponent(rumblingClip, false, rumblingVolume);
+        gemAudioSource      = AddAudioSourceComponent(gemClip,      false, gemVolume);
+        deathAudioSource    = AddAudioSourceComponent(deathClip,    false, deathVolume, deathPitch);
+    }
 
-        // Lava
-        lavaAudioSource = gameObject.AddComponent(typeof(AudioSource)) as AudioSource;
-        lavaAudioSource.clip = lavaClip;
-        lavaAudioSource.playOnAwake = false;
-        lavaAudioSource.loop = true;
-        lavaAudioSource.volume = lavaVolume;
-
-        // Rumbling
-        rumblingAudioSource = gameObject.AddComponent(typeof(AudioSource)) as AudioSource;
-        rumblingAudioSource.clip = rumblingClip;
-        rumblingAudioSource.playOnAwake = false;
-        rumblingAudioSource.loop = false;
-        rumblingAudioSource.volume = rumblingVolume;
-
-        // Gem
-        gemAudioSource = gameObject.AddComponent(typeof(AudioSource)) as AudioSource;
-        gemAudioSource.clip = gemClip;
-        gemAudioSource.playOnAwake = false;
-        gemAudioSource.loop = false;
-        gemAudioSource.volume = gemVolume;
-
-        // Death
-        deathAudioSource = gameObject.AddComponent(typeof(AudioSource)) as AudioSource;
-        deathAudioSource.clip = deathClip;
-        deathAudioSource.playOnAwake = false;
-        deathAudioSource.loop = false;
-        deathAudioSource.volume = deathVolume;
-        deathAudioSource.pitch = deathPitch;
+    private AudioSource AddAudioSourceComponent(AudioClip clip, bool loop, float volume, float pitch = 1)
+    {
+        AudioSource audioSource = gameObject.AddComponent(typeof(AudioSource)) as AudioSource;
+        audioSource.clip = clip;
+        audioSource.playOnAwake = false;
+        audioSource.loop = loop;
+        audioSource.volume = volume;
+        audioSource.pitch = pitch;
+        return audioSource;
     }
 }
