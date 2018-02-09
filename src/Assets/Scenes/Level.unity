@@ -113,52 +113,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &25064386
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4713164271829860, guid: 7e818c803556a443487a6461b2c8315d, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 3.41
-      objectReference: {fileID: 0}
-    - target: {fileID: 4713164271829860, guid: 7e818c803556a443487a6461b2c8315d, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 3.28
-      objectReference: {fileID: 0}
-    - target: {fileID: 4713164271829860, guid: 7e818c803556a443487a6461b2c8315d, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -0.99827754
-      objectReference: {fileID: 0}
-    - target: {fileID: 4713164271829860, guid: 7e818c803556a443487a6461b2c8315d, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4713164271829860, guid: 7e818c803556a443487a6461b2c8315d, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4713164271829860, guid: 7e818c803556a443487a6461b2c8315d, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4713164271829860, guid: 7e818c803556a443487a6461b2c8315d, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4713164271829860, guid: 7e818c803556a443487a6461b2c8315d, type: 2}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1048693804295140, guid: 7e818c803556a443487a6461b2c8315d, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 7e818c803556a443487a6461b2c8315d, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1001 &168188527
 Prefab:
   m_ObjectHideFlags: 0
@@ -2320,6 +2274,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbde4d9fefdf1d744859748fd184d072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lavaSplashParticle: {fileID: 1601603753237224, guid: 40545b06bc40347e385d99620e2a4c4a,
+    type: 2}
+  minSplashInterval: 0.4
+  maxSplashInterval: 0.7
 --- !u!1 &592011999
 GameObject:
   m_ObjectHideFlags: 0
@@ -12404,6 +12362,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114976421325743298, guid: 743c9462540fc4ab2b524f873b4721a6,
+        type: 2}
+      propertyPath: lavaDeathSplashParticle
+      value: 
+      objectReference: {fileID: 1601603753237224, guid: c4ebac3a4812e4326aaace0cc6d1d8e4,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 743c9462540fc4ab2b524f873b4721a6, type: 2}
   m_IsPrefabParent: 0
@@ -12593,7 +12557,7 @@ RectTransform:
   m_Children:
   - {fileID: 357473909}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -12995,6 +12959,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114976421325743298, guid: 890c4a524cd154f52819274b4ccea2da,
+        type: 2}
+      propertyPath: lavaDeathSplashParticle
+      value: 
+      objectReference: {fileID: 1601603753237224, guid: c4ebac3a4812e4326aaace0cc6d1d8e4,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 890c4a524cd154f52819274b4ccea2da, type: 2}
   m_IsPrefabParent: 0
@@ -13102,7 +13072,7 @@ Transform:
   - {fileID: 824166678}
   - {fileID: 875715112}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1473073319
 GameObject:
@@ -15336,7 +15306,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1623542665
 GameObject:

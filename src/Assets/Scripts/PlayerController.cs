@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     private float speed = 1.0f;
     [SerializeField]
     private float jumpForce = 1.0f;
+    [SerializeField]
+    private GameObject lavaDeathSplashParticle;
 
     private Vector2 direction;
     private bool jump = false;
@@ -58,6 +60,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.tag == "Lava")
         {
+            Instantiate(lavaDeathSplashParticle, transform.position, lavaDeathSplashParticle.transform.rotation);
             gameManager.GameOver();
         }
     }
