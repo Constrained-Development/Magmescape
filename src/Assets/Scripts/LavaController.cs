@@ -4,23 +4,26 @@ using UnityEngine;
 
 public class LavaController : MonoBehaviour
 {
-	// This field is hidden from the inspector because
-	// it's value should only be set by the game manager
-	[HideInInspector]
-    public float Speed;
-
-	[HideInInspector]
-	public bool Erupted;
-
-	private GameManager game;
+    private float speed;
+    private bool erupted;
 
     private void FixedUpdate()
     {
-        transform.position += new Vector3(0.0f, Speed * Time.fixedDeltaTime, 0.0f);
+        transform.position += new Vector3(0.0f, speed * Time.fixedDeltaTime, 0.0f);
 
-		if (!Erupted && transform.position.y >= GameManager.GROUND_VERTICAL_POSITION)
-		{
-			Erupted = true;
-		}
+        if (!erupted && transform.position.y >= Utilities.GROUND_VERTICAL_POSITION)
+        {
+            erupted = true;
+        }
+    }
+
+    public void SetSpeed(float s)
+    {
+        speed = s;
+    }
+
+    public bool IsErupted()
+    {
+        return erupted;
     }
 }

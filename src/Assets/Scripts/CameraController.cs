@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-	// This field is hidden from the inspector because
-	// it's value should only be set by the game manager
-	[HideInInspector]
-	public float Speed;
+    private float speed;
 
-	private void FixedUpdate()
-	{
-		transform.position += new Vector3(0.0f, Speed * Time.fixedDeltaTime, 0.0f);
-	}
+    private void FixedUpdate()
+    {
+        transform.position += new Vector3(0.0f, speed * Time.fixedDeltaTime, 0.0f);
+    }
+
+    public void SetSpeed(float s)
+    {
+        speed = s;
+    }
 }

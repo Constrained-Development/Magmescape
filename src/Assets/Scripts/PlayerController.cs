@@ -16,10 +16,13 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 direction;
     private bool jump = false;
+    private bool dead = false;
 
     private Rigidbody2D body;
+    private BoxCollider2D boxCollider;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
+    private AudioSource jumpAudioSource;
     private Rewired.Player player;
     private int levelCollisions = 0;
     private GameManager gameManager;
@@ -30,6 +33,9 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         body = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        jumpAudioSource = GetComponent<AudioSource>();
+        boxCollider = GetComponent<BoxCollider2D>();
+
         player = ReInput.players.GetPlayer(playerID);
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
@@ -37,7 +43,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        GetInput();
+        if (!dead)
+        {
+            GetInput();
+        }
     }
 
     private void FixedUpdate()
@@ -49,7 +58,6 @@ public class PlayerController : MonoBehaviour
     {
         if (other.tag == "Lava")
         {
-            // TODO: play death sound
             gameManager.GameOver();
         }
     }
@@ -106,6 +114,8 @@ public class PlayerController : MonoBehaviour
         if (jump)
         {
             jump = false;
+
+            jumpAudioSource.Play();
             body.AddForce(Vector2.up * jumpForce * Time.fixedDeltaTime, ForceMode2D.Impulse);
         }
 
@@ -127,5 +137,11 @@ public class PlayerController : MonoBehaviour
     public Utilities.ColorEnum GetPlayerColor()
     {
         return playerColor;
+    }
+
+    public void Kill()
+    {
+        Destroy(boxCollider);
+        dead = true;
     }
 }
