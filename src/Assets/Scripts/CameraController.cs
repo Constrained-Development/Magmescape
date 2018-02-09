@@ -30,11 +30,11 @@ public class CameraController : MonoBehaviour
         float timePassed = 0;
         while (timePassed < duration)
         {
-            float randX = Random.Range(-5, 5) / 100f;
-            float randY = Random.Range(-5, 5) / 100f;
+            float randX = Random.Range(-5, 5) / 50f;
+            float randY = Random.Range(-5, 5) / 50f;
             shakeOffset = new Vector3(randX, randY, 0);
-            yield return new WaitForSecondsRealtime(0.1f);
-            timePassed += 0.1f;
+            yield return new WaitForSecondsRealtime(0.05f);
+            timePassed += 0.05f;
         }
         shakeOffset = Vector3.zero;
     }
