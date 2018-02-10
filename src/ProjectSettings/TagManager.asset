@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Level
   - Lava
+  - MovingPlatform
   layers:
   - Default
   - TransparentFX
