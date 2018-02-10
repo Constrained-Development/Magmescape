@@ -21,6 +21,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float gemVolume = 0.5f;
     [SerializeField]
+    private float doorVolume = 0.5f;
+    [SerializeField]
+    private float crystalVolume = 0.5f;
+    [SerializeField]
     private float deathVolume = 0.5f;
     [SerializeField]
     private float deathPitch = 2.5f;
@@ -40,6 +44,14 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private AudioClip gemClip;
     private AudioSource gemAudioSource;
+
+    [SerializeField]
+    private AudioClip doorClip;
+    private AudioSource doorAudioSource;
+
+    [SerializeField]
+    private AudioClip crystalClip;
+    private AudioSource crystalAudioSource;
 
     [SerializeField]
     private AudioClip deathClip;
@@ -126,6 +138,8 @@ public class GameManager : MonoBehaviour
         lavaAudioSource = AddAudioSourceComponent(lavaClip, true, lavaVolume);
         rumblingAudioSource = AddAudioSourceComponent(rumblingClip, false, rumblingVolume);
         gemAudioSource = AddAudioSourceComponent(gemClip, false, gemVolume);
+        doorAudioSource = AddAudioSourceComponent(doorClip, false, doorVolume);
+        crystalAudioSource = AddAudioSourceComponent(crystalClip, false, crystalVolume);
         deathAudioSource = AddAudioSourceComponent(deathClip, false, deathVolume, deathPitch);
     }
 
@@ -169,5 +183,33 @@ public class GameManager : MonoBehaviour
 
         gemAudioSource.Play();
         UpdateUI();
+    }
+
+    public void PlayOpenDoorSound()
+    {
+        doorAudioSource.pitch = 1.0f;
+        doorAudioSource.time = 0.0f;
+        doorAudioSource.Play();
+    }
+
+    public void PlayCloseDoorSound()
+    {
+        doorAudioSource.pitch = -1.0f;
+        doorAudioSource.timeSamples = doorAudioSource.clip.samples - 1;
+        doorAudioSource.Play();
+    }
+
+    public void PlayActivateCrystalSound()
+    {
+        crystalAudioSource.pitch = 1.0f;
+        crystalAudioSource.time = 0.0f;
+        crystalAudioSource.Play();
+    }
+
+    public void PlayDeactivateCrystalSound()
+    {
+        crystalAudioSource.pitch = -1.0f;
+        crystalAudioSource.timeSamples = crystalAudioSource.clip.samples - 1;
+        crystalAudioSource.Play();
     }
 }
