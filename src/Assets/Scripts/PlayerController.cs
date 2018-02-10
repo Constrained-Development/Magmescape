@@ -7,12 +7,16 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private int playerID = 0;
+
     [SerializeField]
     private Utilities.ColorEnum playerColor;
+
     [SerializeField]
     private float speed = 1.0f;
+
     [SerializeField]
     private float jumpForce = 1.0f;
+
     [SerializeField]
     private GameObject lavaDeathSplashParticle;
 
