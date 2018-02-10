@@ -11,7 +11,7 @@ public class GroundCheck : MonoBehaviour
         playerController = transform.parent.GetComponent<PlayerController>();
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
         if (other.tag == "Level" || other.tag == "MovingPlatform")
         {
