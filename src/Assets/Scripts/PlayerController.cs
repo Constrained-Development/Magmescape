@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 direction;
     private bool jump = false;
+    private bool grounded;
     private bool dead = false;
 
     private Rigidbody2D body;
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private Rewired.Player player;
     private int levelCollisions = 0;
     private GameManager gameManager;
+    private Transform prevParent;
 
     // Use this for initialization
     private void Start()
@@ -71,17 +73,28 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.collider.tag == "Level")
+        if (other.collider.tag == "Level" || other.collider.tag == "MovingPlatform")
         {
             levelCollisions++;
+        }
+
+        if (other.collider.tag == "MovingPlatform")
+        {
+            prevParent = transform.parent;
+            transform.parent = other.transform;
         }
     }
 
     private void OnCollisionExit2D(Collision2D other)
     {
-        if (other.collider.tag == "Level")
+        if (other.collider.tag == "Level" || other.collider.tag == "MovingPlatform")
         {
             levelCollisions--;
+        }
+
+        if (other.collider.tag == "MovingPlatform")
+        {
+            transform.parent = prevParent;
         }
     }
 
@@ -90,7 +103,7 @@ public class PlayerController : MonoBehaviour
         direction = Vector2.zero;
         direction.x = player.GetAxis("Move Horizontal");
 
-        if (!jump && levelCollisions != 0)
+        if (!jump && grounded)
         {
             jump = player.GetButtonDown("Action");
         }
@@ -150,5 +163,10 @@ public class PlayerController : MonoBehaviour
     {
         Destroy(boxCollider);
         dead = true;
+    }
+
+    public void SetGrounded(bool isGrounded)
+    {
+        grounded = isGrounded;
     }
 }
