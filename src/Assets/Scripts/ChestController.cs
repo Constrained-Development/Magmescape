@@ -26,6 +26,7 @@ public class ChestController : MonoBehaviour
             if (playerCount == 2)
             {
                 isOpen = true;
+                playerCount = 0;
                 animator.SetLayerWeight(1, 1.0f);
             }
         }
@@ -33,6 +34,11 @@ public class ChestController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        if (isOpen)
+        {
+            return;
+        }
+
         if (other.tag == "Player")
         {
             playerCount--;
