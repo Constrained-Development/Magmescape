@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 direction;
     private bool jump = false;
+    private bool grounded;
     private bool dead = false;
 
     private Rigidbody2D body;
@@ -102,7 +103,7 @@ public class PlayerController : MonoBehaviour
         direction = Vector2.zero;
         direction.x = player.GetAxis("Move Horizontal");
 
-        if (!jump && levelCollisions != 0)
+        if (!jump && grounded)
         {
             jump = player.GetButtonDown("Action");
         }
@@ -162,5 +163,10 @@ public class PlayerController : MonoBehaviour
     {
         Destroy(boxCollider);
         dead = true;
+    }
+
+    public void SetGrounded(bool isGrounded)
+    {
+        grounded = isGrounded;
     }
 }

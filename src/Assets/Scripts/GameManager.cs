@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -44,13 +45,16 @@ public class GameManager : MonoBehaviour
     private AudioClip deathClip;
     private AudioSource deathAudioSource;
 
-    private CanvasGroup gameOverMenu;
+    private TextMeshProUGUI gemsCounter;
+    private GameObject backdrop;
+    private GameObject gameOverMenu;
     private TilemapCollider2D levelCollider;
     private LavaController lavaController;
     private CameraController cameraController;
     private List<PlayerController> playerControllers;
 
     private bool movingCamera;
+    private int gems = 0;
 
     private void Awake()
     {
@@ -59,7 +63,12 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        gameOverMenu = GameObject.Find("Canvas/GameOverMenuPanel").GetComponent<CanvasGroup>();
+        gemsCounter = GameObject.Find("Canvas/GemsCounterText").GetComponent<TextMeshProUGUI>();
+
+        backdrop = GameObject.Find("Canvas/Backdrop");
+        gameOverMenu = GameObject.Find("Canvas/GameOverMenuPanel");
+        EnableGameOverMenu(false);
+
         levelCollider = GameObject.Find("Grid/Level").GetComponent<TilemapCollider2D>();
         lavaController = GameObject.Find("Grid/Lava").GetComponent<LavaController>();
         cameraController = GameObject.Find("Main Camera").GetComponent<CameraController>();
@@ -70,6 +79,8 @@ public class GameManager : MonoBehaviour
         {
             playerControllers.Add(player.GetComponent<PlayerController>());
         }
+
+        UpdateUI();
 
         StartCoroutine(moveLavaInSeconds(countdownSeconds));
         musicAudioSource.Play();
@@ -97,34 +108,24 @@ public class GameManager : MonoBehaviour
         lavaAudioSource.Play();
     }
 
-    public void GameOver()
+    private void EnableGameOverMenu(bool show)
     {
-        foreach (var player in playerControllers)
-        {
-            player.Kill();
-        }
-        ShowGameOverMenu();
-        lavaController.SetSpeed(0);
-        cameraController.SetSpeed(0);
-        deathAudioSource.Play();
-        // TODO:
-        // disable user input
-        // animate player jump
+        backdrop.SetActive(show);
+        gameOverMenu.SetActive(show);
     }
 
-    private void ShowGameOverMenu()
+    private void UpdateUI()
     {
-        gameOverMenu.alpha = 1;
-        gameOverMenu.interactable = true;
+        gemsCounter.text = gems.ToString();
     }
 
     private void SetupAudio()
     {
-        musicAudioSource    = AddAudioSourceComponent(musicClip,    true,  musicVolume);
-        lavaAudioSource     = AddAudioSourceComponent(lavaClip,     true,  lavaVolume);
+        musicAudioSource = AddAudioSourceComponent(musicClip, true, musicVolume);
+        lavaAudioSource = AddAudioSourceComponent(lavaClip, true, lavaVolume);
         rumblingAudioSource = AddAudioSourceComponent(rumblingClip, false, rumblingVolume);
-        gemAudioSource      = AddAudioSourceComponent(gemClip,      false, gemVolume);
-        deathAudioSource    = AddAudioSourceComponent(deathClip,    false, deathVolume, deathPitch);
+        gemAudioSource = AddAudioSourceComponent(gemClip, false, gemVolume);
+        deathAudioSource = AddAudioSourceComponent(deathClip, false, deathVolume, deathPitch);
     }
 
     private AudioSource AddAudioSourceComponent(AudioClip clip, bool loop, float volume, float pitch = 1)
@@ -136,5 +137,27 @@ public class GameManager : MonoBehaviour
         audioSource.volume = volume;
         audioSource.pitch = pitch;
         return audioSource;
+    }
+
+    public void GameOver()
+    {
+        foreach (var player in playerControllers)
+        {
+            player.Kill();
+        }
+        EnableGameOverMenu(true);
+        lavaController.SetSpeed(0);
+        cameraController.SetSpeed(0);
+        deathAudioSource.Play();
+        // TODO:
+        // disable user input
+        // animate player jump
+    }
+
+    public void IncrementGems()
+    {
+        gems++;
+        gemAudioSource.Play();
+        UpdateUI();
     }
 }
