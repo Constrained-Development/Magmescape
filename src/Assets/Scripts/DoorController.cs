@@ -6,13 +6,19 @@ public class DoorController : MonoBehaviour
 {
     [SerializeField]
     private GameObject door;
+
     [SerializeField]
     private float openSpeed = 5.0f;
+
+    [SerializeField]
+    private GameObject debrisParticle;
 
     private Utilities.ColorEnum crystalColor;
     private bool open = false;
     private Vector3 originalSize;
     private BoxCollider2D doorCollider;
+    private Vector3 debrisPosition;
+    private float debrisOffsetYMagicNumber = 0.25f;
 
     // Use this for initialization
     private void Start()
@@ -20,8 +26,10 @@ public class DoorController : MonoBehaviour
         crystalColor = GetComponent<CrystalController>().GetCrystalColor();
         doorCollider = door.GetComponent<BoxCollider2D>();
 
-
         originalSize = door.transform.localScale;
+
+        var debrisOffsetY = doorCollider.bounds.extents.y - debrisOffsetYMagicNumber;
+        debrisPosition = new Vector3(door.transform.position.x, door.transform.position.y + debrisOffsetY, door.transform.position.z);
     }
 
     // Update is called once per frame
@@ -54,6 +62,7 @@ public class DoorController : MonoBehaviour
         {
             open = false;
             doorCollider.enabled = true;
+            Instantiate(debrisParticle, debrisPosition, debrisParticle.transform.rotation);
         }
     }
 }
