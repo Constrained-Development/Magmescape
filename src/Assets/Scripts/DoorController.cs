@@ -13,6 +13,9 @@ public class DoorController : MonoBehaviour
     [SerializeField]
     private GameObject debrisParticle;
 
+    [SerializeField]
+    private float debrisStartDelay = 0.2f;
+
     private Utilities.ColorEnum crystalColor;
     private bool open = false;
     private Vector3 originalSize;
@@ -27,6 +30,10 @@ public class DoorController : MonoBehaviour
         doorCollider = door.GetComponent<BoxCollider2D>();
 
         originalSize = door.transform.localScale;
+
+        var ps = debrisParticle.GetComponent<ParticleSystem>();
+        var main = ps.main;
+        main.startDelay = debrisStartDelay;
 
         var debrisOffsetY = doorCollider.bounds.extents.y - debrisOffsetYMagicNumber;
         debrisPosition = new Vector3(door.transform.position.x, door.transform.position.y + debrisOffsetY, door.transform.position.z);
