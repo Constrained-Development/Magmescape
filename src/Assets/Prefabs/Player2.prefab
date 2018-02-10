@@ -200,8 +200,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerID: 1
   playerColor: 1
-  speed: 500
-  jumpForce: 800
+  speed: 300
+  jumpForce: 590
+  lavaDeathSplashParticle: {fileID: 1601603753237224, guid: c4ebac3a4812e4326aaace0cc6d1d8e4,
+    type: 2}
 --- !u!212 &212420400044416498
 SpriteRenderer:
   m_ObjectHideFlags: 1
