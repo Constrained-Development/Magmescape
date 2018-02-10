@@ -56,7 +56,6 @@ GameObject:
   - component: {fileID: 222252047126365378}
   - component: {fileID: 114826217725015098}
   - component: {fileID: 114941656332115116}
-  - component: {fileID: 225606889814370612}
   m_Layer: 5
   m_Name: GameOverMenuPanel
   m_TagString: Untagged
@@ -1288,14 +1287,3 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!225 &225606889814370612
-CanvasGroup:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1148646618786894}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
