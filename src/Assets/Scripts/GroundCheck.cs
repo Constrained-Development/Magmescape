@@ -13,7 +13,7 @@ public class GroundCheck : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Level")
+        if (other.tag == "Level" || other.tag == "MovingPlatform")
         {
             playerController.SetGrounded(true);
         }
@@ -21,7 +21,7 @@ public class GroundCheck : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag == "Level")
+        if (other.tag == "Level" || other.tag == "MovingPlatform")
         {
             playerController.SetGrounded(false);
         }
