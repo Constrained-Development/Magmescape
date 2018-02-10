@@ -23,7 +23,7 @@ public class GemController : MonoBehaviour
             other.gameObject.GetComponent<PlayerController>().GetPlayerColor() == gemColor)
         {
             Instantiate(CollectParticle, transform.position, CollectParticle.transform.rotation);
-            gameManager.IncrementGems();
+            gameManager.IncrementGems(gemColor);
 
             Destroy(gameObject);
         }

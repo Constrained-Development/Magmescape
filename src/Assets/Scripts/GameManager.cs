@@ -54,7 +54,8 @@ public class GameManager : MonoBehaviour
     private List<PlayerController> playerControllers;
 
     private bool movingCamera;
-    private int gems = 0;
+    private int redGems = 0;
+    private int blueGems = 0;
 
     private void Awake()
     {
@@ -116,7 +117,7 @@ public class GameManager : MonoBehaviour
 
     private void UpdateUI()
     {
-        gemsCounter.text = gems.ToString();
+        gemsCounter.text = (blueGems + redGems).ToString();
     }
 
     private void SetupAudio()
@@ -154,9 +155,18 @@ public class GameManager : MonoBehaviour
         // animate player jump
     }
 
-    public void IncrementGems()
+    public void IncrementGems(Utilities.ColorEnum color)
     {
-        gems++;
+        if (color == Utilities.ColorEnum.Red)
+        {
+            redGems++;
+        }
+        else
+        {
+            blueGems++;
+        }
+
+
         gemAudioSource.Play();
         UpdateUI();
     }
