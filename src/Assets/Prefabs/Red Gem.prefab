@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gemColor: 0
-  GetParticle: {fileID: 1193476034535748, guid: 5d4731839ad994dd99c205dc29bda58a,
+  CollectParticle: {fileID: 1193476034535748, guid: 5d4731839ad994dd99c205dc29bda58a,
     type: 2}
 --- !u!212 &212789733643936780
 SpriteRenderer:
