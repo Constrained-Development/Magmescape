@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -44,7 +45,8 @@ public class GameManager : MonoBehaviour
     private AudioClip deathClip;
     private AudioSource deathAudioSource;
 
-    private CanvasGroup gameOverMenu;
+    private GameObject backdrop;
+    private GameObject gameOverMenu;
     private TilemapCollider2D levelCollider;
     private LavaController lavaController;
     private CameraController cameraController;
@@ -59,10 +61,15 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        gameOverMenu = GameObject.Find("Canvas/GameOverMenuPanel").GetComponent<CanvasGroup>();
+        backdrop = GameObject.Find("Canvas/Backdrop");
+        gameOverMenu = GameObject.Find("Canvas/GameOverMenuPanel");
+        EnableGameOverMenu(false);
+
         levelCollider = GameObject.Find("Grid/Level").GetComponent<TilemapCollider2D>();
         lavaController = GameObject.Find("Grid/Lava").GetComponent<LavaController>();
         cameraController = GameObject.Find("Main Camera").GetComponent<CameraController>();
+
+
 
         var players = GameObject.FindGameObjectsWithTag("Player");
         playerControllers = new List<PlayerController>();
@@ -103,7 +110,7 @@ public class GameManager : MonoBehaviour
         {
             player.Kill();
         }
-        ShowGameOverMenu();
+        EnableGameOverMenu(true);
         lavaController.SetSpeed(0);
         cameraController.SetSpeed(0);
         deathAudioSource.Play();
@@ -112,19 +119,19 @@ public class GameManager : MonoBehaviour
         // animate player jump
     }
 
-    private void ShowGameOverMenu()
+    private void EnableGameOverMenu(bool show)
     {
-        gameOverMenu.alpha = 1;
-        gameOverMenu.interactable = true;
+        backdrop.SetActive(show);
+        gameOverMenu.SetActive(show);
     }
 
     private void SetupAudio()
     {
-        musicAudioSource    = AddAudioSourceComponent(musicClip,    true,  musicVolume);
-        lavaAudioSource     = AddAudioSourceComponent(lavaClip,     true,  lavaVolume);
+        musicAudioSource = AddAudioSourceComponent(musicClip, true, musicVolume);
+        lavaAudioSource = AddAudioSourceComponent(lavaClip, true, lavaVolume);
         rumblingAudioSource = AddAudioSourceComponent(rumblingClip, false, rumblingVolume);
-        gemAudioSource      = AddAudioSourceComponent(gemClip,      false, gemVolume);
-        deathAudioSource    = AddAudioSourceComponent(deathClip,    false, deathVolume, deathPitch);
+        gemAudioSource = AddAudioSourceComponent(gemClip, false, gemVolume);
+        deathAudioSource = AddAudioSourceComponent(deathClip, false, deathVolume, deathPitch);
     }
 
     private AudioSource AddAudioSourceComponent(AudioClip clip, bool loop, float volume, float pitch = 1)
