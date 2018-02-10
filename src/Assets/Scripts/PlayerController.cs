@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private Rewired.Player player;
     private int levelCollisions = 0;
     private GameManager gameManager;
+    private Transform prevParent;
 
     // Use this for initialization
     private void Start()
@@ -72,17 +73,28 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.collider.tag == "Level")
+        if (other.collider.tag == "Level" || other.collider.tag == "MovingPlatform")
         {
             levelCollisions++;
+        }
+
+        if (other.collider.tag == "MovingPlatform")
+        {
+            prevParent = transform.parent;
+            transform.parent = other.transform;
         }
     }
 
     private void OnCollisionExit2D(Collision2D other)
     {
-        if (other.collider.tag == "Level")
+        if (other.collider.tag == "Level" || other.collider.tag == "MovingPlatform")
         {
             levelCollisions--;
+        }
+
+        if (other.collider.tag == "MovingPlatform")
+        {
+            transform.parent = prevParent;
         }
     }
 
