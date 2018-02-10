@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 using TMPro;
+using Rewired;
 
 public class GameManager : MonoBehaviour
 {
@@ -80,10 +80,10 @@ public class GameManager : MonoBehaviour
     private TextMeshProUGUI gemsCounter;
     private GameObject backdrop;
     private GameObject gameOverMenu;
-    private TilemapCollider2D levelCollider;
     private LavaController lavaController;
     private CameraController cameraController;
     private List<PlayerController> playerControllers;
+    private Rewired.Player sharedInput;
 
     private bool movingCamera;
     private int redGems = 50;
@@ -98,13 +98,14 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        sharedInput = ReInput.players.GetPlayer("Shared");
+
         gemsCounter = GameObject.Find("Canvas/GemsCounterText").GetComponent<TextMeshProUGUI>();
 
         backdrop = GameObject.Find("Canvas/Backdrop");
         gameOverMenu = GameObject.Find("Canvas/GameOverMenuPanel");
         EnableGameOverMenu(false);
 
-        levelCollider = GameObject.Find("Grid/Level").GetComponent<TilemapCollider2D>();
         lavaController = GameObject.Find("Grid/Lava").GetComponent<LavaController>();
         cameraController = GameObject.Find("Main Camera").GetComponent<CameraController>();
 
@@ -127,6 +128,16 @@ public class GameManager : MonoBehaviour
         {
             cameraController.SetSpeed(lavaAndCameraSpeed);
             movingCamera = true;
+        }
+
+        if (sharedInput.GetButtonDown("Quit"))
+        {
+            Debug.Log("!QUIT!");
+        }
+
+        if (sharedInput.GetButtonDown("Restart"))
+        {
+            Debug.Log("!RESTART!");
         }
     }
 

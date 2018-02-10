@@ -203,6 +203,21 @@ MonoBehaviour:
       _assignMouseOnStart: 0
       _assignKeyboardOnStart: 1
       _excludeFromControllerAutoAssignment: 0
+    - _id: 3
+      _name: Shared
+      _descriptiveName: Shared inputs
+      _startPlaying: 1
+      _defaultJoystickMaps: []
+      _defaultMouseMaps: []
+      _defaultKeyboardMaps:
+      - _enabled: 1
+        _categoryId: 0
+        _layoutId: 0
+      _defaultCustomControllerMaps: []
+      _startingCustomControllers: []
+      _assignMouseOnStart: 0
+      _assignKeyboardOnStart: 1
+      _excludeFromControllerAutoAssignment: 0
     actions:
     - _id: 0
       _name: Move Horizontal
@@ -222,6 +237,24 @@ MonoBehaviour:
       _behaviorId: 0
       _userAssignable: 1
       _categoryId: 0
+    - _id: 2
+      _name: Quit
+      _type: 1
+      _descriptiveName: Quit the game
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 0
+    - _id: 3
+      _name: Restart
+      _type: 1
+      _descriptiveName: Restart the game
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 0
     actionCategories:
     - _name: Default
       _descriptiveName: Default
@@ -231,7 +264,7 @@ MonoBehaviour:
     actionCategoryMap:
       list:
       - categoryId: 0
-        actionIds: 0000000001000000
+        actionIds: 00000000010000000200000003000000
     inputBehaviors:
     - _id: 0
       _name: Default
@@ -622,35 +655,35 @@ MonoBehaviour:
       customControllerUid: 0
       actionElementMaps:
       - _actionCategoryId: 0
-        _actionId: 0
+        _actionId: 2
         _elementType: 1
         _elementIdentifierId: -1
         _axisRange: 0
         _invert: 0
         _axisContribution: 1
-        _keyboardKeyCode: 97
+        _keyboardKeyCode: 27
         _modifierKey1: 0
         _modifierKey2: 0
         _modifierKey3: 0
       - _actionCategoryId: 0
-        _actionId: 0
+        _actionId: 3
         _elementType: 1
         _elementIdentifierId: -1
         _axisRange: 0
         _invert: 0
         _axisContribution: 0
-        _keyboardKeyCode: 100
+        _keyboardKeyCode: 114
         _modifierKey1: 0
         _modifierKey2: 0
         _modifierKey3: 0
       - _actionCategoryId: 0
-        _actionId: 1
+        _actionId: 3
         _elementType: 1
         _elementIdentifierId: -1
         _axisRange: 0
         _invert: 0
         _axisContribution: 0
-        _keyboardKeyCode: 115
+        _keyboardKeyCode: 32
         _modifierKey1: 0
         _modifierKey2: 0
         _modifierKey3: 0
@@ -737,8 +770,8 @@ MonoBehaviour:
     mouseMaps: []
     customControllerMaps: []
     customControllers: []
-    playerIdCounter: 3
-    actionIdCounter: 2
+    playerIdCounter: 4
+    actionIdCounter: 4
     actionCategoryIdCounter: 1
     inputBehaviorIdCounter: 1
     mapCategoryIdCounter: 5
