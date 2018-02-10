@@ -58,10 +58,14 @@ MonoBehaviour:
   lavaVolume: 1
   rumblingVolume: 0.5
   gemVolume: 0.5
+  doorVolume: 0.5
+  crystalVolume: 0.5
   deathVolume: 0.5
   deathPitch: 2.5
   musicClip: {fileID: 8300000, guid: 9399cd61dbdfd41cfa0ba65b143c8cb8, type: 3}
   lavaClip: {fileID: 8300000, guid: e28b64ab74ba24d15b2593eb5617964a, type: 3}
-  rumblingClip: {fileID: 8300000, guid: 910d37f8fcba54c9aad568aa547d3416, type: 3}
+  rumblingClip: {fileID: 8300000, guid: af8690d8ad66345b2959ea048866f52d, type: 3}
   gemClip: {fileID: 8300000, guid: 3b5246482bf934167890fed8eb0780b8, type: 3}
+  doorClip: {fileID: 8300000, guid: cf7db241b3f2a4e74ad6b8084a94f0db, type: 3}
+  crystalClip: {fileID: 8300000, guid: f3480ecc2588346c5bdbeb73ed8fc915, type: 3}
   deathClip: {fileID: 8300000, guid: d741bb032cf4a4002bc30d2d1d664ddf, type: 3}

@@ -7,18 +7,14 @@ public class CrystalController : MonoBehaviour
     [SerializeField]
     private Utilities.ColorEnum crystalColor;
 
+    private GameManager gameManager;
     private Animator animator;
 
     // Use this for initialization
     private void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         animator = GetComponent<Animator>();
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -26,6 +22,7 @@ public class CrystalController : MonoBehaviour
         if (other.gameObject.tag == "Player" &&
             other.gameObject.GetComponent<PlayerController>().GetPlayerColor() == crystalColor)
         {
+            gameManager.PlayActivateCrystalSound();
             animator.SetLayerWeight(1, 1.0f);
         }
     }
@@ -35,6 +32,7 @@ public class CrystalController : MonoBehaviour
         if (other.gameObject.tag == "Player" &&
             other.gameObject.GetComponent<PlayerController>().GetPlayerColor() == crystalColor)
         {
+            gameManager.PlayDeactivateCrystalSound();
             animator.SetLayerWeight(1, 0.0f);
         }
     }

@@ -16,6 +16,7 @@ public class DoorController : MonoBehaviour
     [SerializeField]
     private float debrisStartDelay = 0.2f;
 
+    private GameManager gameManager;
     private Utilities.ColorEnum crystalColor;
     private bool open = false;
     private Vector3 originalSize;
@@ -26,6 +27,7 @@ public class DoorController : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         crystalColor = GetComponent<CrystalController>().GetCrystalColor();
         doorCollider = door.GetComponent<BoxCollider2D>();
 
@@ -57,6 +59,7 @@ public class DoorController : MonoBehaviour
         if (other.gameObject.tag == "Player" &&
             other.gameObject.GetComponent<PlayerController>().GetPlayerColor() == crystalColor)
         {
+            gameManager.PlayOpenDoorSound();
             open = true;
             doorCollider.enabled = false;
         }
@@ -67,6 +70,7 @@ public class DoorController : MonoBehaviour
         if (other.gameObject.tag == "Player" &&
             other.gameObject.GetComponent<PlayerController>().GetPlayerColor() == crystalColor)
         {
+            gameManager.PlayCloseDoorSound();
             open = false;
             doorCollider.enabled = true;
             Instantiate(debrisParticle, debrisPosition, debrisParticle.transform.rotation);
