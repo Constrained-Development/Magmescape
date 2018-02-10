@@ -54,8 +54,17 @@ MonoBehaviour:
   countdownSeconds: 5
   rumblingSeconds: 2
   lavaAndCameraSpeed: 1
+  gemSprayPosition: {fileID: 0}
+  gemSprayInterval: 0.1
+  gemSprayMinForce: 500
+  gemSprayMaxForce: 600
+  standardBlueGem: {fileID: 1575633313377154, guid: 8c55e974b39bd424cbda7691b1735fce,
+    type: 2}
+  standardRedGem: {fileID: 1575633313377154, guid: f011f0669b3a24c70a18dc1249340b57,
+    type: 2}
   musicVolume: 0.25
   lavaVolume: 1
+  victoryVolume: 0.5
   rumblingVolume: 0.5
   gemVolume: 0.5
   doorVolume: 0.5
@@ -64,6 +73,7 @@ MonoBehaviour:
   deathPitch: 2.5
   musicClip: {fileID: 8300000, guid: 9399cd61dbdfd41cfa0ba65b143c8cb8, type: 3}
   lavaClip: {fileID: 8300000, guid: e28b64ab74ba24d15b2593eb5617964a, type: 3}
+  victoryClip: {fileID: 8300000, guid: f3797167d5e4a4f3bbf207e1038c8240, type: 3}
   rumblingClip: {fileID: 8300000, guid: af8690d8ad66345b2959ea048866f52d, type: 3}
   gemClip: {fileID: 8300000, guid: 3b5246482bf934167890fed8eb0780b8, type: 3}
   doorClip: {fileID: 8300000, guid: cf7db241b3f2a4e74ad6b8084a94f0db, type: 3}

@@ -12,10 +12,26 @@ public class GameManager : MonoBehaviour
     private float rumblingSeconds = 2;
     [SerializeField]
     private float lavaAndCameraSpeed;
+
+    [SerializeField]
+    private Transform gemSprayPosition;
+    [SerializeField]
+    private float gemSprayInterval = 0.1f;
+    [SerializeField]
+    private float gemSprayMinForce = 2f;
+    [SerializeField]
+    private float gemSprayMaxForce = 5f;
+    [SerializeField]
+    private GameObject standardBlueGem;
+    [SerializeField]
+    private GameObject standardRedGem;
+
     [SerializeField]
     private float musicVolume = 0.25f;
     [SerializeField]
     private float lavaVolume = 1.0f;
+    [SerializeField]
+    private float victoryVolume = 0.5f;
     [SerializeField]
     private float rumblingVolume = 0.5f;
     [SerializeField]
@@ -36,6 +52,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private AudioClip lavaClip;
     private AudioSource lavaAudioSource;
+
+    [SerializeField]
+    private AudioClip victoryClip;
+    private AudioSource victoryAudioSource;
 
     [SerializeField]
     private AudioClip rumblingClip;
@@ -66,8 +86,10 @@ public class GameManager : MonoBehaviour
     private List<PlayerController> playerControllers;
 
     private bool movingCamera;
-    private int redGems = 0;
-    private int blueGems = 0;
+    private int redGems = 50;
+    private int blueGems = 30;
+    private bool gameWon = false;
+    private bool gameOver = false;
 
     private void Awake()
     {
@@ -95,7 +117,7 @@ public class GameManager : MonoBehaviour
 
         UpdateUI();
 
-        StartCoroutine(moveLavaInSeconds(countdownSeconds));
+        StartCoroutine(MoveLavaInSeconds(countdownSeconds));
         musicAudioSource.Play();
     }
 
@@ -108,7 +130,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private IEnumerator moveLavaInSeconds(float seconds)
+    private IEnumerator MoveLavaInSeconds(float seconds)
     {
         yield return new WaitForSecondsRealtime(seconds);
 
@@ -119,6 +141,35 @@ public class GameManager : MonoBehaviour
 
         lavaController.SetSpeed(lavaAndCameraSpeed);
         lavaAudioSource.Play();
+    }
+
+    private IEnumerator SprayGems()
+    {
+        while (redGems != 0 || blueGems != 0)
+        {
+            if (redGems != 0)
+            {
+                SprayGem(standardRedGem);
+                redGems--;
+                yield return new WaitForSecondsRealtime(gemSprayInterval);
+            }
+
+            if (blueGems != 0)
+            {
+                SprayGem(standardBlueGem);
+                blueGems--;
+                yield return new WaitForSecondsRealtime(gemSprayInterval);
+            }
+        }
+    }
+
+    private void SprayGem(GameObject gem)
+    {
+        var dir = new Vector2(Random.Range(-2.0f, 2.0f), 1).normalized;
+        var rot = Quaternion.Euler(0, 0, Random.Range(0, 360));
+        var gemInstance = Instantiate(gem, gemSprayPosition.position, rot);
+        gemInstance.GetComponent<Rigidbody2D>().AddForce(dir * Random.Range(gemSprayMinForce, gemSprayMaxForce));
+        gemAudioSource.Play();
     }
 
     private void EnableGameOverMenu(bool show)
@@ -141,6 +192,7 @@ public class GameManager : MonoBehaviour
         doorAudioSource = AddAudioSourceComponent(doorClip, false, doorVolume);
         crystalAudioSource = AddAudioSourceComponent(crystalClip, false, crystalVolume);
         deathAudioSource = AddAudioSourceComponent(deathClip, false, deathVolume, deathPitch);
+        victoryAudioSource = AddAudioSourceComponent(victoryClip, false, victoryVolume);
     }
 
     private AudioSource AddAudioSourceComponent(AudioClip clip, bool loop, float volume, float pitch = 1)
@@ -156,6 +208,13 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        if (gameWon)
+        {
+            return;
+        }
+
+        gameOver = true;
+
         foreach (var player in playerControllers)
         {
             player.Kill();
@@ -164,9 +223,21 @@ public class GameManager : MonoBehaviour
         lavaController.SetSpeed(0);
         cameraController.SetSpeed(0);
         deathAudioSource.Play();
-        // TODO:
-        // disable user input
-        // animate player jump
+    }
+
+    public void WinGame()
+    {
+        if (gameOver)
+        {
+            return;
+        }
+
+        gameWon = true;
+
+        StartCoroutine(SprayGems());
+        lavaController.SetSpeed(0);
+        cameraController.SetSpeed(0);
+        victoryAudioSource.Play();
     }
 
     public void IncrementGems(Utilities.ColorEnum color)
