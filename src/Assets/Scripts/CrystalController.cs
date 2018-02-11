@@ -20,7 +20,7 @@ public class CrystalController : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         animator = GetComponent<Animator>();
 
-        var activatedParticleInstance = Instantiate(activatedParticle, transform.position, activatedParticle.transform.rotation);
+        var activatedParticleInstance = Instantiate(activatedParticle, transform.position, activatedParticle.transform.rotation, transform);
         var activatedParticleSystem = activatedParticleInstance.GetComponent<ParticleSystem>();
         activatedParticleEmission = activatedParticleSystem.emission;
         activatedParticleEmission.enabled = false;
