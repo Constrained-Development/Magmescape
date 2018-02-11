@@ -34,7 +34,7 @@ public class ElevatorController : MonoBehaviour
     {
         if (active)
         {
-            Vector2 dir;
+            Vector3 dir;
             float move = Time.fixedDeltaTime * speed; ;
 
             if (goingFromOrigin)
@@ -58,7 +58,7 @@ public class ElevatorController : MonoBehaviour
                 }
             }
 
-            elevatorBody.MovePosition(elevatorBody.position + (dir.normalized * move));
+            elevator.position += (dir.normalized * move);
         }
     }
 
