@@ -16,6 +16,10 @@ public class CameraController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (transform.position.y >= Utilities.CAMERA_STOP_POSITION)
+        {
+            speed = 0;
+        }
         realPosition += new Vector3(0.0f, speed * Time.fixedDeltaTime, 0.0f);
         transform.position = realPosition + shakeOffset;
     }
