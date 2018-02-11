@@ -122,13 +122,17 @@ public class GameManager : MonoBehaviour
 
         UpdateUI();
 
-        StartCoroutine(MoveLavaInSeconds(countdownSeconds));
+        StartCoroutine(StartCountdown(countdownSeconds));
+        StartCoroutine(RumbleInSeconds(countdownSeconds));
+        StartCoroutine(MoveLavaInSeconds(countdownSeconds + rumblingSeconds));
+        StartCoroutine(RumbleInSeconds(20));
+
         musicAudioSource.Play();
     }
 
     private void Update()
     {
-        if (!movingCamera && lavaController.IsErupted())
+        if (!movingCamera && lavaController.IsErupted() && !gameOver)
         {
             cameraController.SetSpeed(lavaAndCameraSpeed);
             movingCamera = true;
@@ -145,25 +149,29 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private IEnumerator MoveLavaInSeconds(int seconds)
+    private IEnumerator MoveLavaInSeconds(float seconds)
     {
-        countdownText.gameObject.SetActive(true);
-
-        for (var i = 0; i < seconds; i++)
-        {
-            yield return new WaitForSecondsRealtime(1);
-            countdownText.text = (seconds - i - 1).ToString();
-        }
-
-        countdownText.gameObject.SetActive(false);
-
-        rumblingAudioSource.Play();
-        cameraController.Shake(rumblingSeconds);
-
-        yield return new WaitForSecondsRealtime(rumblingSeconds);
-
+        yield return new WaitForSecondsRealtime(seconds);
         lavaController.SetSpeed(lavaAndCameraSpeed);
         lavaAudioSource.Play();
+    }
+
+    private IEnumerator RumbleInSeconds(float seconds)
+    {
+        yield return new WaitForSecondsRealtime(seconds);
+        cameraController.Shake(rumblingSeconds);
+        rumblingAudioSource.Play();
+    }
+
+    private IEnumerator StartCountdown(int seconds)
+    {
+        countdownText.gameObject.SetActive(true);
+        for (var i = 0; i < seconds; i++)
+        {
+            yield return new WaitForSeconds(1);
+            countdownText.text = (seconds - i - 1).ToString();
+        }
+        countdownText.gameObject.SetActive(false);
     }
 
     private IEnumerator SprayGems()
