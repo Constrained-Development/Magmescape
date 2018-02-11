@@ -7,14 +7,24 @@ public class CrystalController : MonoBehaviour
     [SerializeField]
     private Utilities.ColorEnum crystalColor;
 
+    [SerializeField]
+    private GameObject activatedParticle;
+
     private GameManager gameManager;
     private Animator animator;
+    private ParticleSystem activatedParticleSystem;
+    private ParticleSystem.EmissionModule activatedParticleEmission;
 
     // Use this for initialization
     private void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         animator = GetComponent<Animator>();
+
+        var activatedParticleInstance = Instantiate(activatedParticle, transform.position, activatedParticle.transform.rotation);
+        activatedParticleSystem = activatedParticleInstance.GetComponent<ParticleSystem>();
+        activatedParticleEmission = activatedParticleSystem.emission;
+        activatedParticleEmission.enabled = false;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -23,6 +33,7 @@ public class CrystalController : MonoBehaviour
             other.gameObject.GetComponent<PlayerController>().GetPlayerColor() == crystalColor)
         {
             gameManager.PlayActivateCrystalSound();
+            activatedParticleEmission.enabled = true;
             animator.SetLayerWeight(1, 1.0f);
         }
     }
@@ -33,6 +44,7 @@ public class CrystalController : MonoBehaviour
             other.gameObject.GetComponent<PlayerController>().GetPlayerColor() == crystalColor)
         {
             gameManager.PlayDeactivateCrystalSound();
+            activatedParticleEmission.enabled = false;
             animator.SetLayerWeight(1, 0.0f);
         }
     }
