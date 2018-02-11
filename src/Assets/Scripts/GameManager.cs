@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 using TMPro;
+using Rewired;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     private float lavaAndCameraSpeed;
 
     [SerializeField]
-    private Transform gemSprayPosition;
+    private Transform chestTransform;
     [SerializeField]
     private float gemSprayInterval = 0.1f;
     [SerializeField]
@@ -77,13 +77,14 @@ public class GameManager : MonoBehaviour
     private AudioClip deathClip;
     private AudioSource deathAudioSource;
 
+    private MenuController menuController;
     private TextMeshProUGUI gemsCounter;
     private GameObject backdrop;
     private GameObject gameOverMenu;
-    private TilemapCollider2D levelCollider;
     private LavaController lavaController;
     private CameraController cameraController;
     private List<PlayerController> playerControllers;
+    private Rewired.Player sharedInput;
 
     private bool movingCamera;
     private int redGems = 50;
@@ -98,13 +99,15 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        sharedInput = ReInput.players.GetPlayer("Shared");
+        menuController = GetComponent<MenuController>();
+
         gemsCounter = GameObject.Find("Canvas/GemsCounterText").GetComponent<TextMeshProUGUI>();
 
         backdrop = GameObject.Find("Canvas/Backdrop");
         gameOverMenu = GameObject.Find("Canvas/GameOverMenuPanel");
         EnableGameOverMenu(false);
 
-        levelCollider = GameObject.Find("Grid/Level").GetComponent<TilemapCollider2D>();
         lavaController = GameObject.Find("Grid/Lava").GetComponent<LavaController>();
         cameraController = GameObject.Find("Main Camera").GetComponent<CameraController>();
 
@@ -127,6 +130,16 @@ public class GameManager : MonoBehaviour
         {
             cameraController.SetSpeed(lavaAndCameraSpeed);
             movingCamera = true;
+        }
+
+        if (sharedInput.GetButtonDown("Quit"))
+        {
+            menuController.QuitGame();
+        }
+
+        if (sharedInput.GetButtonDown("Restart"))
+        {
+            menuController.LoadSceneByIndex(1);
         }
     }
 
@@ -167,7 +180,7 @@ public class GameManager : MonoBehaviour
     {
         var dir = new Vector2(Random.Range(-2.0f, 2.0f), 1).normalized;
         var rot = Quaternion.Euler(0, 0, Random.Range(0, 360));
-        var gemInstance = Instantiate(gem, gemSprayPosition.position, rot);
+        var gemInstance = Instantiate(gem, chestTransform.position, rot);
         gemInstance.GetComponent<Rigidbody2D>().AddForce(dir * Random.Range(gemSprayMinForce, gemSprayMaxForce));
         gemAudioSource.Play();
     }
