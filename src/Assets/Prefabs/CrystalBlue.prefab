@@ -101,6 +101,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   door: {fileID: 0}
   openSpeed: 5
+  debrisParticle: {fileID: 0}
+  debrisStartDelay: 0.2
 --- !u!212 &212628410756343160
 SpriteRenderer:
   m_ObjectHideFlags: 1
