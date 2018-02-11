@@ -7,7 +7,7 @@ using Rewired;
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
-    private float countdownSeconds = 5;
+    private int countdownSeconds = 5;
     [SerializeField]
     private float rumblingSeconds = 2;
     [SerializeField]
@@ -78,6 +78,7 @@ public class GameManager : MonoBehaviour
     private AudioSource deathAudioSource;
 
     private MenuController menuController;
+    private TextMeshProUGUI countdownText;
     private TextMeshProUGUI gemsCounter;
     private GameObject backdrop;
     private GameObject gameOverMenu;
@@ -103,6 +104,7 @@ public class GameManager : MonoBehaviour
         menuController = GetComponent<MenuController>();
 
         gemsCounter = GameObject.Find("Canvas/GemsCounterText").GetComponent<TextMeshProUGUI>();
+        countdownText = GameObject.Find("Canvas/CountdownText").GetComponent<TextMeshProUGUI>();
 
         backdrop = GameObject.Find("Canvas/Backdrop");
         gameOverMenu = GameObject.Find("Canvas/GameOverMenuPanel");
@@ -143,9 +145,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private IEnumerator MoveLavaInSeconds(float seconds)
+    private IEnumerator MoveLavaInSeconds(int seconds)
     {
-        yield return new WaitForSecondsRealtime(seconds);
+        countdownText.gameObject.SetActive(true);
+
+        for (var i = 0; i < seconds; i++)
+        {
+            yield return new WaitForSecondsRealtime(1);
+            countdownText.text = (seconds - i - 1).ToString();
+        }
+
+        countdownText.gameObject.SetActive(false);
 
         rumblingAudioSource.Play();
         cameraController.Shake(rumblingSeconds);
