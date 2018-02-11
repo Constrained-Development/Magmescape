@@ -9,8 +9,11 @@ public class MenuController : MonoBehaviour
 
     private void Start()
     {
-        controlsDisplay = GameObject.FindGameObjectWithTag("ControlsDisplay");
-        controlsDisplay.SetActive(false);
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            controlsDisplay = GameObject.FindGameObjectWithTag("ControlsDisplay");
+            controlsDisplay.SetActive(false);
+        }
     }
 
     public void LoadSceneByIndex(int sceneIndex)

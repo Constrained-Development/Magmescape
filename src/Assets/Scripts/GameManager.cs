@@ -77,6 +77,7 @@ public class GameManager : MonoBehaviour
     private AudioClip deathClip;
     private AudioSource deathAudioSource;
 
+    private SkullsManager skullsManager;
     private MenuController menuController;
     private TextMeshProUGUI countdownText;
     private TextMeshProUGUI gemsCounter;
@@ -105,6 +106,7 @@ public class GameManager : MonoBehaviour
 
         gemsCounter = GameObject.Find("Canvas/GemsCounterText").GetComponent<TextMeshProUGUI>();
         countdownText = GameObject.Find("Canvas/CountdownText").GetComponent<TextMeshProUGUI>();
+        skullsManager = GameObject.FindGameObjectWithTag("SkullManager").GetComponent<SkullsManager>();
 
         backdrop = GameObject.Find("Canvas/Backdrop");
         gameOverMenu = GameObject.Find("Canvas/GameOverMenuPanel");
@@ -119,6 +121,8 @@ public class GameManager : MonoBehaviour
         {
             playerControllers.Add(player.GetComponent<PlayerController>());
         }
+
+        skullsManager.SpawnSkulls();
 
         UpdateUI();
 
@@ -242,7 +246,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        if (gameWon)
+        if (gameWon || gameOver)
         {
             return;
         }
@@ -251,6 +255,7 @@ public class GameManager : MonoBehaviour
 
         foreach (var player in playerControllers)
         {
+            skullsManager.AddLocation(player.transform.position);
             player.Kill();
         }
         EnableGameOverMenu(true);
@@ -261,7 +266,7 @@ public class GameManager : MonoBehaviour
 
     public void WinGame()
     {
-        if (gameOver)
+        if (gameOver || gameWon)
         {
             return;
         }
