@@ -128,6 +128,8 @@ public class GameManager : MonoBehaviour
         StartCoroutine(RumbleInSeconds(20));
 
         musicAudioSource.Play();
+
+        Cursor.visible = false;
     }
 
     private void Update()
@@ -208,6 +210,7 @@ public class GameManager : MonoBehaviour
 
     private void EnableGameOverMenu(bool show)
     {
+        Cursor.visible = true;
         backdrop.SetActive(show);
         gameOverMenu.SetActive(show);
     }
