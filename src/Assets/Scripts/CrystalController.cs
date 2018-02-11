@@ -12,7 +12,6 @@ public class CrystalController : MonoBehaviour
 
     private GameManager gameManager;
     private Animator animator;
-    private ParticleSystem activatedParticleSystem;
     private ParticleSystem.EmissionModule activatedParticleEmission;
 
     // Use this for initialization
@@ -22,7 +21,7 @@ public class CrystalController : MonoBehaviour
         animator = GetComponent<Animator>();
 
         var activatedParticleInstance = Instantiate(activatedParticle, transform.position, activatedParticle.transform.rotation);
-        activatedParticleSystem = activatedParticleInstance.GetComponent<ParticleSystem>();
+        var activatedParticleSystem = activatedParticleInstance.GetComponent<ParticleSystem>();
         activatedParticleEmission = activatedParticleSystem.emission;
         activatedParticleEmission.enabled = false;
     }
