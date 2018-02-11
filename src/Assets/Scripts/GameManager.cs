@@ -138,14 +138,17 @@ public class GameManager : MonoBehaviour
             movingCamera = true;
         }
 
-        if (sharedInput.GetButtonDown("Quit"))
+        if (gameOver || gameWon)
         {
-            menuController.QuitGame();
-        }
+            if (sharedInput.GetButtonDown("Quit"))
+            {
+                menuController.QuitGame();
+            }
 
-        if (sharedInput.GetButtonDown("Restart"))
-        {
-            menuController.LoadSceneByIndex(1);
+            if (sharedInput.GetButtonDown("Restart"))
+            {
+                menuController.LoadSceneByIndex(1);
+            }
         }
     }
 
