@@ -8,6 +8,8 @@ TagManager:
   - Lava
   - MovingPlatform
   - Gem
+  - ControlsDisplay
+  - SkullManager
   layers:
   - Default
   - TransparentFX
@@ -17,8 +19,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Player
+  - Skull
   - 
   - 
   - 
@@ -44,4 +46,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player2
+    uniqueID: 1011128051
+    locked: 0
+  - name: Player1
+    uniqueID: 3707134211
+    locked: 0
+  - name: Lava
+    uniqueID: 960058249
     locked: 0

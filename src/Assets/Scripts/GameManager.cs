@@ -77,6 +77,7 @@ public class GameManager : MonoBehaviour
     private AudioClip deathClip;
     private AudioSource deathAudioSource;
 
+    private SkullsManager skullsManager;
     private MenuController menuController;
     private TextMeshProUGUI countdownText;
     private TextMeshProUGUI gemsCounter;
@@ -105,6 +106,7 @@ public class GameManager : MonoBehaviour
 
         gemsCounter = GameObject.Find("Canvas/GemsCounterText").GetComponent<TextMeshProUGUI>();
         countdownText = GameObject.Find("Canvas/CountdownText").GetComponent<TextMeshProUGUI>();
+        skullsManager = GameObject.FindGameObjectWithTag("SkullManager").GetComponent<SkullsManager>();
 
         backdrop = GameObject.Find("Canvas/Backdrop");
         gameOverMenu = GameObject.Find("Canvas/GameOverMenuPanel");
@@ -120,50 +122,65 @@ public class GameManager : MonoBehaviour
             playerControllers.Add(player.GetComponent<PlayerController>());
         }
 
+        skullsManager.SpawnSkulls();
+
         UpdateUI();
 
-        StartCoroutine(MoveLavaInSeconds(countdownSeconds));
+        StartCoroutine(StartCountdown(countdownSeconds));
+        StartCoroutine(RumbleInSeconds(countdownSeconds));
+        StartCoroutine(MoveLavaInSeconds(countdownSeconds + rumblingSeconds));
+        StartCoroutine(RumbleInSeconds(20));
+
         musicAudioSource.Play();
+
+        Cursor.visible = false;
     }
 
     private void Update()
     {
-        if (!movingCamera && lavaController.IsErupted())
+        if (!gameOver && !gameWon && !movingCamera && lavaController.IsErupted())
         {
             cameraController.SetSpeed(lavaAndCameraSpeed);
             movingCamera = true;
         }
 
-        if (sharedInput.GetButtonDown("Quit"))
+        if (gameOver || gameWon)
         {
-            menuController.QuitGame();
-        }
+            if (sharedInput.GetButtonDown("Quit"))
+            {
+                menuController.QuitGame();
+            }
 
-        if (sharedInput.GetButtonDown("Restart"))
-        {
-            menuController.LoadSceneByIndex(1);
+            if (sharedInput.GetButtonDown("Restart"))
+            {
+                menuController.LoadSceneByIndex(1);
+            }
         }
     }
 
-    private IEnumerator MoveLavaInSeconds(int seconds)
+    private IEnumerator MoveLavaInSeconds(float seconds)
     {
-        countdownText.gameObject.SetActive(true);
-
-        for (var i = 0; i < seconds; i++)
-        {
-            yield return new WaitForSecondsRealtime(1);
-            countdownText.text = (seconds - i - 1).ToString();
-        }
-
-        countdownText.gameObject.SetActive(false);
-
-        rumblingAudioSource.Play();
-        cameraController.Shake(rumblingSeconds);
-
-        yield return new WaitForSecondsRealtime(rumblingSeconds);
-
+        yield return new WaitForSecondsRealtime(seconds);
         lavaController.SetSpeed(lavaAndCameraSpeed);
         lavaAudioSource.Play();
+    }
+
+    private IEnumerator RumbleInSeconds(float seconds)
+    {
+        yield return new WaitForSecondsRealtime(seconds);
+        cameraController.Shake(rumblingSeconds);
+        rumblingAudioSource.Play();
+    }
+
+    private IEnumerator StartCountdown(int seconds)
+    {
+        countdownText.gameObject.SetActive(true);
+        for (var i = 0; i < seconds; i++)
+        {
+            yield return new WaitForSeconds(1);
+            countdownText.text = (seconds - i - 1).ToString();
+        }
+        countdownText.gameObject.SetActive(false);
     }
 
     private IEnumerator SprayGems()
@@ -197,6 +214,7 @@ public class GameManager : MonoBehaviour
 
     private void EnableGameOverMenu(bool show)
     {
+        Cursor.visible = true;
         backdrop.SetActive(show);
         gameOverMenu.SetActive(show);
     }
@@ -231,7 +249,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        if (gameWon)
+        if (gameWon || gameOver)
         {
             return;
         }
@@ -240,6 +258,7 @@ public class GameManager : MonoBehaviour
 
         foreach (var player in playerControllers)
         {
+            skullsManager.AddLocation(player.transform.position);
             player.Kill();
         }
         EnableGameOverMenu(true);
@@ -250,7 +269,7 @@ public class GameManager : MonoBehaviour
 
     public void WinGame()
     {
-        if (gameOver)
+        if (gameOver || gameWon)
         {
             return;
         }

@@ -5,17 +5,34 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
-	public void LoadSceneByIndex(int sceneIndex)
-	{
-		SceneManager.LoadScene(sceneIndex);
-	}
+    private GameObject controlsDisplay;
 
-	public void QuitGame()
-	{
-	#if UNITY_EDITOR
-		UnityEditor.EditorApplication.isPlaying = false;
-	#else
+    private void Start()
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            controlsDisplay = GameObject.FindGameObjectWithTag("ControlsDisplay");
+            controlsDisplay.SetActive(false);
+        }
+    }
+
+    public void LoadSceneByIndex(int sceneIndex)
+    {
+        SceneManager.LoadScene(sceneIndex);
+    }
+
+    public void QuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
 		Application.Quit();
-	#endif
-	}
+#endif
+    }
+
+    public void ToggleControlsDisplay()
+    {
+        controlsDisplay.SetActive(!controlsDisplay.activeSelf);
+    }
+
 }
