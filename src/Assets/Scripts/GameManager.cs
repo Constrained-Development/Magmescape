@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     private float lavaAndCameraSpeed;
 
     [SerializeField]
-    private Transform gemSprayPosition;
+    private Transform chestTransform;
     [SerializeField]
     private float gemSprayInterval = 0.1f;
     [SerializeField]
@@ -77,6 +77,7 @@ public class GameManager : MonoBehaviour
     private AudioClip deathClip;
     private AudioSource deathAudioSource;
 
+    private MenuController menuController;
     private TextMeshProUGUI gemsCounter;
     private GameObject backdrop;
     private GameObject gameOverMenu;
@@ -99,6 +100,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         sharedInput = ReInput.players.GetPlayer("Shared");
+        menuController = GetComponent<MenuController>();
 
         gemsCounter = GameObject.Find("Canvas/GemsCounterText").GetComponent<TextMeshProUGUI>();
 
@@ -132,12 +134,12 @@ public class GameManager : MonoBehaviour
 
         if (sharedInput.GetButtonDown("Quit"))
         {
-            Debug.Log("!QUIT!");
+            menuController.QuitGame();
         }
 
         if (sharedInput.GetButtonDown("Restart"))
         {
-            Debug.Log("!RESTART!");
+            menuController.LoadSceneByIndex(1);
         }
     }
 
@@ -178,7 +180,7 @@ public class GameManager : MonoBehaviour
     {
         var dir = new Vector2(Random.Range(-2.0f, 2.0f), 1).normalized;
         var rot = Quaternion.Euler(0, 0, Random.Range(0, 360));
-        var gemInstance = Instantiate(gem, gemSprayPosition.position, rot);
+        var gemInstance = Instantiate(gem, chestTransform.position, rot);
         gemInstance.GetComponent<Rigidbody2D>().AddForce(dir * Random.Range(gemSprayMinForce, gemSprayMaxForce));
         gemAudioSource.Play();
     }
