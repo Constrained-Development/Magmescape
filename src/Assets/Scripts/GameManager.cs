@@ -128,7 +128,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (!movingCamera && lavaController.IsErupted())
+        if (!gameOver && !gameWon && !movingCamera && lavaController.IsErupted())
         {
             cameraController.SetSpeed(lavaAndCameraSpeed);
             movingCamera = true;
