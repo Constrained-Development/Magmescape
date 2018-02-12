@@ -15,7 +15,6 @@ public class ElevatorController : MonoBehaviour
     private bool active = false;
     private bool goingFromOrigin = true;
     private Vector3 origin;
-    private Rigidbody2D elevatorBody;
 
     // Use this for initialization
     private void Start()
@@ -24,8 +23,6 @@ public class ElevatorController : MonoBehaviour
 
         elevator = elevatorContainer.GetChild(0);
         destination = elevatorContainer.GetChild(1);
-
-        elevatorBody = elevator.GetComponent<Rigidbody2D>();
         origin = elevator.position;
     }
 
