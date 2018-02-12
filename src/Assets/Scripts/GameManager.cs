@@ -89,8 +89,8 @@ public class GameManager : MonoBehaviour
     private Rewired.Player sharedInput;
 
     private bool movingCamera;
-    private int redGems = 50;
-    private int blueGems = 30;
+    private int redGems = 0;
+    private int blueGems = 0;
     private bool gameWon = false;
     private bool gameOver = false;
 
