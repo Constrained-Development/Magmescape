@@ -28,7 +28,7 @@ public class LavaController : MonoBehaviour
     {
         transform.position += new Vector3(0.0f, speed * Time.fixedDeltaTime, 0.0f);
 
-        if (!erupted && transform.position.y >= Utilities.GROUND_VERTICAL_POSITION)
+        if (!erupted && transform.position.y >= Utilities.CAMERA_START_POSITION)
         {
             erupted = true;
         }
