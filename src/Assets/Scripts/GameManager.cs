@@ -81,8 +81,12 @@ public class GameManager : MonoBehaviour
     private MenuController menuController;
     private TextMeshProUGUI countdownText;
     private TextMeshProUGUI gemsCounter;
+    private TextMeshProUGUI winScreenTotalGems;
+    private TextMeshProUGUI winScreenRedGems;
+    private TextMeshProUGUI winScreenBlueGems;
     private GameObject backdrop;
     private GameObject gameOverMenu;
+    private GameObject gameWinMenu;
     private LavaController lavaController;
     private CameraController cameraController;
     private List<PlayerController> playerControllers;
@@ -93,6 +97,7 @@ public class GameManager : MonoBehaviour
     private int blueGems = 0;
     private bool gameWon = false;
     private bool gameOver = false;
+    private bool sprayingGems = false;
 
     private void Awake()
     {
@@ -110,7 +115,14 @@ public class GameManager : MonoBehaviour
 
         backdrop = GameObject.Find("Canvas/Backdrop");
         gameOverMenu = GameObject.Find("Canvas/GameOverMenuPanel");
+        gameWinMenu = GameObject.Find("Canvas/GameWinMenuPanel");
+
+        winScreenTotalGems = gameWinMenu.transform.Find("TotalGemsText").GetComponent<TextMeshProUGUI>();
+        winScreenRedGems = gameWinMenu.transform.Find("RedGemsText").GetComponent<TextMeshProUGUI>();
+        winScreenBlueGems = gameWinMenu.transform.Find("BlueGemsText").GetComponent<TextMeshProUGUI>();
+
         EnableGameOverMenu(false);
+        EnableGameWinMenu(false);
 
         lavaController = GameObject.Find("Grid/Lava").GetComponent<LavaController>();
         cameraController = GameObject.Find("Main Camera").GetComponent<CameraController>();
@@ -156,6 +168,11 @@ public class GameManager : MonoBehaviour
             {
                 menuController.LoadSceneByIndex(1);
             }
+        }
+
+        if (gameWon && !sprayingGems)
+        {
+            EnableGameWinMenu(true);
         }
     }
 
@@ -229,6 +246,7 @@ public class GameManager : MonoBehaviour
             {
                 SprayGem(standardRedGem);
                 redGems--;
+                UpdateUI();
                 yield return new WaitForSecondsRealtime(gemSprayInterval);
             }
 
@@ -236,9 +254,12 @@ public class GameManager : MonoBehaviour
             {
                 SprayGem(standardBlueGem);
                 blueGems--;
+                UpdateUI();
                 yield return new WaitForSecondsRealtime(gemSprayInterval);
             }
         }
+
+        sprayingGems = false;
     }
 
     private void SprayGem(GameObject gem)
@@ -255,6 +276,13 @@ public class GameManager : MonoBehaviour
         Cursor.visible = true;
         backdrop.SetActive(show);
         gameOverMenu.SetActive(show);
+    }
+
+    private void EnableGameWinMenu(bool show)
+    {
+        Cursor.visible = true;
+        backdrop.SetActive(show);
+        gameWinMenu.SetActive(show);
     }
 
     private void UpdateUI()
@@ -314,9 +342,14 @@ public class GameManager : MonoBehaviour
 
         gameWon = true;
 
+        winScreenTotalGems.text += " " + (redGems + blueGems).ToString();
+        winScreenRedGems.text += " " + redGems.ToString();
+        winScreenBlueGems.text += " " + blueGems.ToString();
+
+        sprayingGems = true;
         StartCoroutine(SprayGems());
+
         lavaController.SetSpeed(0);
-        cameraController.SetSpeed(0);
         victoryAudioSource.Play();
     }
 
