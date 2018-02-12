@@ -17,10 +17,6 @@ public class SkullsManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    private void Start()
-    {
         locations = new List<Vector3>();
     }
 

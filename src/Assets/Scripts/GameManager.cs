@@ -112,7 +112,7 @@ public class GameManager : MonoBehaviour
 
         gemsCounter = GameObject.Find("Canvas/GemsCounterText").GetComponent<TextMeshProUGUI>();
         countdownText = GameObject.Find("Canvas/CountdownText").GetComponent<TextMeshProUGUI>();
-        skullsManager = GameObject.FindGameObjectWithTag("SkullManager").GetComponent<SkullsManager>();
+        skullsManager = GameObject.Find("SkullsManager").GetComponent<SkullsManager>();
 
         backdrop = GameObject.Find("Canvas/Backdrop");
         gameOverMenu = GameObject.Find("Canvas/GameOverMenuPanel");
@@ -364,7 +364,6 @@ public class GameManager : MonoBehaviour
         sprayingGems = true;
         StartCoroutine(SprayGems());
 
-        lavaController.SetSpeed(0);
         victoryAudioSource.Play();
     }
 
