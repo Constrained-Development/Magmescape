@@ -68,7 +68,7 @@ Animator:
   m_GameObject: {fileID: 1702314010047274}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1c256550210d4204a9d28248829c24d0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -88,6 +88,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crystalColor: 0
+  activatedParticle: {fileID: 0}
 --- !u!114 &114453294638362376
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -101,6 +102,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   door: {fileID: 0}
   openSpeed: 5
+  debrisParticle: {fileID: 0}
+  debrisStartDelay: 0.2
 --- !u!212 &212628410756343160
 SpriteRenderer:
   m_ObjectHideFlags: 1
