@@ -14,7 +14,7 @@ On the way out the players will encounter a number of puzzles where they must wo
     * Open/Close doors
     * Move platforms
 * Skulls indicate where you have died
-* Multiple difficulty
+* Multiple difficulties
     * Affects the speed of the rising magma
 * A dashing main menu
 * Good feels if you win on Hard difficulty
