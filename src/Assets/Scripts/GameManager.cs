@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float rumblingSeconds = 2;
     [SerializeField]
-    private float lavaAndCameraSpeed;
+    private float lavaAndCameraSpeed = 1;
 
     [SerializeField]
     private Transform chestTransform;
@@ -123,6 +123,7 @@ public class GameManager : MonoBehaviour
         }
 
         skullsManager.SpawnSkulls();
+        SetDifficulty();
 
         UpdateUI();
 
@@ -155,6 +156,25 @@ public class GameManager : MonoBehaviour
             {
                 menuController.LoadSceneByIndex(1);
             }
+        }
+    }
+
+    private void SetDifficulty()
+    {
+        switch (Utilities.difficulty)
+        {
+            case 0:
+                lavaAndCameraSpeed = Utilities.easySpeed;
+                break;
+
+            case 1:
+                lavaAndCameraSpeed = Utilities.mediumSpeed;
+                break;
+
+            case 2:
+            default:
+                lavaAndCameraSpeed = Utilities.hardSpeed;
+                break;
         }
     }
 
