@@ -2,7 +2,7 @@
 {
     public enum ColorEnum { Red, Blue };
     public const float GROUND_VERTICAL_POSITION = 3.275f;
-    public const float CAMERA_STOP_POSITION = 83.21f;
+    public const float CAMERA_STOP_POSITION = 83f;
     public static int difficulty = 2;
     public const float easySpeed = 0.6f;
     public const float mediumSpeed = 0.8f;

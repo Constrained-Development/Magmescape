@@ -316,7 +316,6 @@ public class GameManager : MonoBehaviour
 
         StartCoroutine(SprayGems());
         lavaController.SetSpeed(0);
-        cameraController.SetSpeed(0);
         victoryAudioSource.Play();
     }
 
