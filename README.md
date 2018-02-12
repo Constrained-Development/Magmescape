@@ -22,6 +22,29 @@ On the way out the players will encounter a number of puzzles where they must wo
 
 In order to play Magmescape you can either download the binary for your platform on our Itch.io page or build it from source using Unity.
 
+### Controls
+
+#### Player 1
+
+* Move with A and D
+* Jump with S
+
+#### Player 2
+
+* Move with J and L
+* Jump with K
+
+## Development choices
+
+The game is part of a game design course where the assignment was to make a game adhering to certain constraints.
+
+* Constraints
+    * 2 player game
+    * 3 button controls per player (ASD and JKL)
+    * The game must end within 2 minutes
+    * An end screen where ESC exits the game and either R or Space restarts the game
+
+
 ## Built With
 
 * [Unity 2017.3](https://unity3d.com/) - Game engine
