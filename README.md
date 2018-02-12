@@ -21,7 +21,7 @@ On the way out the players will encounter a number of puzzles where they must wo
 
 ## Playing the game
 
-In order to play Magmescape you can either download the binary for your platform on our Itch.io page or build it from source using Unity.
+In order to play Magmescape you can either download the binary for your platform on our [Itch.io page](https://da-sh.itch.io/magmescape) or build it from source using Unity.
 
 ### Controls
 
