@@ -101,11 +101,20 @@ public class PlayerController : MonoBehaviour
     private void GetInput()
     {
         direction = Vector2.zero;
-        direction.x = player.GetAxis("Move Horizontal");
+        // direction.x = player.GetAxis("Move Horizontal");
+
+        if (player.GetButton("Move Left"))
+        {
+            direction.x += -1.0f;
+        }
+        if (player.GetButton("Move Right"))
+        {
+            direction.x += 1.0f;
+        }
 
         if (!jump && grounded)
         {
-            jump = player.GetButtonDown("Action");
+            jump = player.GetButton("Jump");
         }
     }
 
