@@ -26,6 +26,10 @@ public class LavaController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (transform.position.y >= Utilities.LAVA_STOP_POSITION)
+        {
+            speed = 0;
+        }
         transform.position += new Vector3(0.0f, speed * Time.fixedDeltaTime, 0.0f);
 
         if (!erupted && transform.position.y >= Utilities.CAMERA_START_POSITION)
