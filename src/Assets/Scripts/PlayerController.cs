@@ -114,7 +114,7 @@ public class PlayerController : MonoBehaviour
 
         if (!jump && grounded)
         {
-            jump = player.GetButtonDown("Jump");
+            jump = player.GetButton("Jump");
         }
     }
 
