@@ -162,6 +162,7 @@ public class PlayerController : MonoBehaviour
     public void Kill()
     {
         Destroy(boxCollider);
+        body.velocity = new Vector2(body.velocity.x, 10);
         dead = true;
     }
 
