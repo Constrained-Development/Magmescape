@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour
     private MenuController menuController;
     private TextMeshProUGUI countdownText;
     private TextMeshProUGUI gemsCounter;
+    private TextMeshProUGUI winScreenDifficulty;
     private TextMeshProUGUI winScreenTotalGems;
     private TextMeshProUGUI winScreenRedGems;
     private TextMeshProUGUI winScreenBlueGems;
@@ -117,6 +118,7 @@ public class GameManager : MonoBehaviour
         gameOverMenu = GameObject.Find("Canvas/GameOverMenuPanel");
         gameWinMenu = GameObject.Find("Canvas/GameWinMenuPanel");
 
+        winScreenDifficulty = gameWinMenu.transform.Find("DifficultyText").GetComponent<TextMeshProUGUI>();
         winScreenTotalGems = gameWinMenu.transform.Find("TotalGemsText").GetComponent<TextMeshProUGUI>();
         winScreenRedGems = gameWinMenu.transform.Find("RedGemsText").GetComponent<TextMeshProUGUI>();
         winScreenBlueGems = gameWinMenu.transform.Find("BlueGemsText").GetComponent<TextMeshProUGUI>();
@@ -341,6 +343,19 @@ public class GameManager : MonoBehaviour
         }
 
         gameWon = true;
+
+        switch (Utilities.difficulty)
+        {
+            case 0:
+                winScreenDifficulty.text = "Easy";
+                break;
+            case 1:
+                winScreenDifficulty.text = "Medium";
+                break;
+            case 2:
+                winScreenDifficulty.text = "Hard";
+                break;
+        }
 
         winScreenTotalGems.text += " " + (redGems + blueGems).ToString();
         winScreenRedGems.text += " " + redGems.ToString();
