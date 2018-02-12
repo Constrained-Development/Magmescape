@@ -129,7 +129,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(StartCountdown(countdownSeconds));
         StartCoroutine(RumbleInSeconds(countdownSeconds));
         StartCoroutine(MoveLavaInSeconds(countdownSeconds + rumblingSeconds));
-        StartCoroutine(RumbleInSeconds(20));
+        StartCoroutine(RandomRumbler(15, 30));
 
         musicAudioSource.Play();
 
@@ -158,6 +158,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private IEnumerator RandomRumbler(float minSecondsBetweenRumbles, float maxSecondsBetweenRumbles)
+    {
+        while (!gameOver && !gameWon)
+        {
+            float secondsBetweenRumbles = Random.Range(minSecondsBetweenRumbles, maxSecondsBetweenRumbles);
+            yield return new WaitForSecondsRealtime(secondsBetweenRumbles);
+            if (!gameOver && !gameWon)
+            {
+                Rumble();
+            }
+        }
+    }
+
     private IEnumerator MoveLavaInSeconds(float seconds)
     {
         yield return new WaitForSecondsRealtime(seconds);
@@ -165,11 +178,16 @@ public class GameManager : MonoBehaviour
         lavaAudioSource.Play();
     }
 
+    private void Rumble()
+    {
+        cameraController.Shake(rumblingSeconds);
+        rumblingAudioSource.Play();
+    }
+
     private IEnumerator RumbleInSeconds(float seconds)
     {
         yield return new WaitForSecondsRealtime(seconds);
-        cameraController.Shake(rumblingSeconds);
-        rumblingAudioSource.Play();
+        Rumble();
     }
 
     private IEnumerator StartCountdown(int seconds)
