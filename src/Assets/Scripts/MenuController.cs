@@ -8,10 +8,13 @@ public class MenuController : MonoBehaviour
 {
     private GameObject controlsDisplay;
     private TMP_Dropdown difficultyDropdown;
+    private bool inMainMenu;
 
     private void Start()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 0)
+        inMainMenu = SceneManager.GetActiveScene().buildIndex == 0;
+
+        if (inMainMenu)
         {
             controlsDisplay = GameObject.FindGameObjectWithTag("ControlsDisplay");
             controlsDisplay.SetActive(false);
@@ -22,7 +25,11 @@ public class MenuController : MonoBehaviour
 
     public void LoadSceneByIndex(int sceneIndex)
     {
-        Utilities.difficulty = difficultyDropdown.value;
+        if (inMainMenu)
+        {
+            Utilities.difficulty = difficultyDropdown.value;
+        }
+
         SceneManager.LoadScene(sceneIndex);
     }
 
