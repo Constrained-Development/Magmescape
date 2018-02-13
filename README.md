@@ -55,7 +55,7 @@ The game is part of a game design course where the assignment was to make a game
 ## Authors
 
 * [Christian A. Jacobsen](https://github.com/ChristianJacobsen)
-* [Daði Sigursveinn Harðarsson](https://github.com/dadisigursveinn)
+* [Daði Sigursveinn Harðarson](https://github.com/dadisigursveinn)
 * [Hallur Aðalsteinn Atlason](https://github.com/hallur)
 * [Hilmar Tryggvason](https://github.com/Indexu/)
 
